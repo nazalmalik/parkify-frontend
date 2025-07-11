@@ -68,7 +68,7 @@ const AuthPage = () => {
     try {
       if (isLogin) {
         // USER LOGIN
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post("https://parkify-backend-six.vercel.app/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
@@ -88,7 +88,7 @@ const AuthPage = () => {
         }
       } else {
         // USER REGISTER
-        await axios.post("http://localhost:5000/api/auth/register", {
+        await axios.post("https://parkify-backend-six.vercel.app/api/auth/register", {
           name: formData.name,
           phoneNumber: formData.phoneNumber,
           vehicleNumber: formData.vehicleNumber,
@@ -120,7 +120,7 @@ const AuthPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post('https://parkify-backend-six.vercel.app/api/admin/login', {
         username: adminData.username.trim(),
         password: adminData.password.trim(),
       });
