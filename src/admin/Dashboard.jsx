@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/bookings/admin/bookings');
+      const res = await axios.get('https://parkify-backend-six.vercel.app/api/bookings/admin/bookings');
       setBookings(res.data);
       calculateStats(res.data);
     } catch (err) {
