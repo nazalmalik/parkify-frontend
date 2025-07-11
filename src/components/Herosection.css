@@ -1,0 +1,585 @@
+/* Add these CSS resets at the top of the file */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Modern Hero Section Styling */
+.modern-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80")
+    no-repeat center center / cover;
+    /* background: url(../assets/herosect.jpg)
+    no-repeat center center / cover; */
+  display: flex;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+}
+
+.hero-content-left {
+  position: relative;
+  z-index: 2;
+  padding: 20px 0;
+}
+
+/* Navbar Styling */
+.modern-logo {
+  width: 90px;
+  height: 35px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-left: 10px;
+}
+
+.modern-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+.modern-nav .nav-link:hover,
+.modern-nav .nav-link:focus {
+  color: #ffc107;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modern-btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background-color: #ffc107;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.modern-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  background-color: #ffca2c;
+}
+/* .navbar.scrolled {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.9));
+  backdrop-filter: blur(10px);
+} */
+/* Hero Content Styling */
+.hero-badge {
+  display: inline-block;
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.modern-hero-title {
+  font-size: 3.1rem;
+  font-weight: bolder;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  margin-top:130px;
+  padding-left: 130px;
+}
+
+.modern-hero-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin-bottom: 30px;
+  padding-left: 130px;
+  
+}
+
+.modern-hero-btn {
+  margin-top: 25px;
+  margin-left: 130px;
+  font-weight: bolder;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  /* color: #f0f0f0 !important; */
+  font-weight: bolder !important;
+ 
+ 
+}
+
+.modern-hero-btn-outline {
+  padding: 40px;
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: transparent;
+  transition: all 0.3s ease;
+ 
+}
+
+.modern-hero-btn:hover,
+.modern-hero-btn-outline:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+/* Stats Container */
+.stats-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+
+ 
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffc107;
+  margin-bottom: 5px;
+}
+
+.stat-item p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Phone Mockup - REDUCED SIZE */
+.hero-image-container {
+  position: relative;
+  height: 470px;
+  z-index: 2;
+}
+
+.phone-mockup {
+  position: relative;
+  width: 240px; /* Reduced from 300px */
+  height: 460px; /* Reduced from 600px */
+  background-color: #111;
+  border-radius: 36px;
+  padding: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 60px;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 25px;
+  background-color: #111;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 3;
+}
+
+/* Map Styling */
+.map-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.map-header {
+  padding: 15px 10px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+}
+
+.map-search {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 8px 12px;
+}
+
+.search-icon {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.search-text {
+  color: #777;
+  font-size: 14px;
+}
+
+.map-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Map Pins */
+.map-pin {
+  position: absolute;
+  z-index: 2;
+}
+
+.pin-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #ffc107;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pin-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 193, 7, 0.4);
+  animation: pulse 2s infinite;
+}
+
+.pin-1 {
+  top: 30%;
+  left: 40%;
+}
+
+.pin-2 {
+  top: 50%;
+  right: 30%;
+}
+
+.pin-3 {
+  bottom: 25%;
+  left: 60%;
+}
+
+.pin-user {
+  bottom: 40%;
+  left: 50%;
+}
+
+.user-dot {
+  width: 16px;
+  height: 16px;
+  background-color: #4285f4;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(66, 133, 244, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+.map-footer {
+  background-color: white;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nearest-spot {
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-distance {
+  font-size: 12px;
+  color: #4285f4;
+  font-weight: bold;
+}
+
+.spot-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.spot-price {
+  font-size: 12px;
+  color: #666;
+}
+
+.action-button {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Floating Cards - Adjusted for smaller phone */
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 12px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: #333;
+  z-index: 4;
+}
+
+.card-1 {
+  top: 80px;
+  right: -20px;
+  width: 180px;
+}
+
+.card-2 {
+  bottom: 100px;
+  left: -20px;
+  width: 180px;
+}
+
+.card-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #ffc107;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-right: 12px;
+}
+
+.card-text {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+}
+
+.card-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  z-index: 5;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
+
+/* Update container to be full width */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* ✅ 2. Large Tablets: 991px to 769px */
+@media (max-width: 991px) and (min-width: 769px) {
+  /* Adjust hero text */
+  .modern-hero-title {
+    font-size: 2.6rem;
+    padding-left: 60px;
+    margin-top: 100px;
+  }
+
+  .modern-hero-subtitle {
+    font-size: 1rem;
+    padding-left: 60px;
+    max-width: 90%;
+  }
+
+  .modern-hero-btn {
+    margin-left: 60px;
+  }
+
+  /* ✅ Show phone mockup */
+  .hero-image-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .phone-mockup {
+    display: block !important;
+    margin: 0 auto;
+  }
+
+  /* ✅ Show map section */
+  .map-container {
+    display: flex !important;
+    flex-direction: column;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 30px auto 0;
+    max-width: 90%;
+  }
+
+  .map-content,
+  .map-image {
+    display: block !important;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-footer {
+    margin-bottom: 40px;
+  }
+}
+
+/* ✅ 3. Tablets/Small Screens: 768px to 469px */
+@media (max-width: 768px) and (min-width: 469px) {
+  .modern-hero-title {
+    font-size: 2.2rem;
+    margin-left: -60px;
+    margin-top: 80px;
+  }
+
+  .modern-hero-subtitle {
+    font-size: 1rem;
+    padding-left: 60px;
+    max-width: 90%;
+  }
+
+  .modern-hero-btn {
+    margin-left: 60px;
+    width: auto;
+  }
+
+  .hero-image-container,
+  .map-container {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+  }
+}
+
+/* ✅ 4. Mobile Devices: max 468px */
+@media (max-width: 468px) {
+  .modern-hero-title {
+    font-size: 2.2rem;
+    padding-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .modern-hero-subtitle {
+    font-size: 0.95rem;
+    padding-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+.modern-hero-btn {
+  width: 40%;
+  padding: 12px;
+  font-size: 0.9rem;
+  display: block;
+  margin: 0 auto;
+}
+
+
+  .hero-image-container,
+  .map-container {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    
+  }
+}
+.stats-container{
+  display: none;
+}

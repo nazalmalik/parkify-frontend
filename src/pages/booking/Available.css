@@ -1,0 +1,98 @@
+/* Available.css */
+
+.available-booking-container {
+  max-width: 1200px;
+  margin: 120px auto 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+.available-booking-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.vehicle-select-label {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  display: inline-block;
+  color: #444;
+}
+
+.vehicle-select {
+  padding: 10px 15px;
+  margin-left: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fdfdfd;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.vehicle-select:hover,
+.vehicle-select:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.3);
+  outline: none;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.vehicle-toggle-group {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.vehicle-toggle-label {
+  font-size: 1.2rem;
+  color: #444;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.vehicle-toggle-buttons {
+  display: inline-flex;
+  gap: 15px;
+}
+
+.vehicle-btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: 2px solid #ccc;
+  background-color: #f7f7f7;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #333;
+}
+
+.vehicle-btn:hover {
+  border-color: #ffc107;
+  background-color: #fff3cd;
+}
+
+.vehicle-btn.active {
+  background-color: #ffc107;
+  color: #fff;
+  border-color: #ffc107;
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}

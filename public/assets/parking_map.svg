@@ -1,0 +1,163 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background:#e0e0e0">
+  <style>
+    .spot { stroke: #333; stroke-width: 1; }
+    .car { fill: #90caf9; }
+    .bike { fill: #a5d6a7; }
+    .entrance { fill: #ffcc80; stroke: #f57c00; stroke-width: 2; }
+    .wall { fill: #212121; }
+    .label { font-size: 12px; font-family: sans-serif; text-anchor: middle; fill: #000; }
+  </style>
+
+  <!-- Walls -->
+  <rect class="wall" x="0" y="0" width="1200" height="10" />
+  <rect class="wall" x="0" y="790" width="1200" height="10" />
+  <rect class="wall" x="0" y="0" width="10" height="800" />
+  <rect class="wall" x="1190" y="0" width="10" height="800" />
+
+  <!-- Entrance -->
+  <rect id="entrance-1" data-type="entrance" class="entrance" x="100" y="730" width="140" height="60" />
+  <text class="label" x="170" y="760">Entrance</text>
+
+  <!-- Car Spots Rows 1 & 2 -->
+  <!-- Row 1 -->
+  <rect id="car-1" data-type="car" class="spot car" x="100" y="100" width="60" height="100" />
+  <text class="label" x="130" y="150">Car 1</text>
+  <rect id="car-2" data-type="car" class="spot car" x="170" y="100" width="60" height="100" />
+  <text class="label" x="200" y="150">Car 2</text>
+  <rect id="car-3" data-type="car" class="spot car" x="240" y="100" width="60" height="100" />
+  <text class="label" x="270" y="150">Car 3</text>
+  <rect id="car-4" data-type="car" class="spot car" x="310" y="100" width="60" height="100" />
+  <text class="label" x="340" y="150">Car 4</text>
+  <rect id="car-5" data-type="car" class="spot car" x="380" y="100" width="60" height="100" />
+  <text class="label" x="410" y="150">Car 5</text>
+  <rect id="car-6" data-type="car" class="spot car" x="450" y="100" width="60" height="100" />
+  <text class="label" x="480" y="150">Car 6</text>
+  <rect id="car-7" data-type="car" class="spot car" x="520" y="100" width="60" height="100" />
+  <text class="label" x="550" y="150">Car 7</text>
+  <rect id="car-8" data-type="car" class="spot car" x="590" y="100" width="60" height="100" />
+  <text class="label" x="620" y="150">Car 8</text>
+  <rect id="car-9" data-type="car" class="spot car" x="660" y="100" width="60" height="100" />
+  <text class="label" x="690" y="150">Car 9</text>
+  <rect id="car-10" data-type="car" class="spot car" x="730" y="100" width="60" height="100" />
+  <text class="label" x="760" y="150">Car 10</text>
+
+  <!-- Row 2 -->
+  <rect id="car-11" data-type="car" class="spot car" x="100" y="220" width="60" height="100" />
+  <text class="label" x="130" y="270">Car 11</text>
+  <rect id="car-12" data-type="car" class="spot car" x="170" y="220" width="60" height="100" />
+  <text class="label" x="200" y="270">Car 12</text>
+  <rect id="car-13" data-type="car" class="spot car" x="240" y="220" width="60" height="100" />
+  <text class="label" x="270" y="270">Car 13</text>
+  <rect id="car-14" data-type="car" class="spot car" x="310" y="220" width="60" height="100" />
+  <text class="label" x="340" y="270">Car 14</text>
+  <rect id="car-15" data-type="car" class="spot car" x="380" y="220" width="60" height="100" />
+  <text class="label" x="410" y="270">Car 15</text>
+  <rect id="car-16" data-type="car" class="spot car" x="450" y="220" width="60" height="100" />
+  <text class="label" x="480" y="270">Car 16</text>
+  <rect id="car-17" data-type="car" class="spot car" x="520" y="220" width="60" height="100" />
+  <text class="label" x="550" y="270">Car 17</text>
+  <rect id="car-18" data-type="car" class="spot car" x="590" y="220" width="60" height="100" />
+  <text class="label" x="620" y="270">Car 18</text>
+  <rect id="car-19" data-type="car" class="spot car" x="660" y="220" width="60" height="100" />
+  <text class="label" x="690" y="270">Car 19</text>
+  <rect id="car-20" data-type="car" class="spot car" x="730" y="220" width="60" height="100" />
+  <text class="label" x="760" y="270">Car 20</text>
+
+  <!-- Row 3 -->
+  <rect id="car-21" data-type="car" class="spot car" x="100" y="430" width="60" height="100" />
+  <text class="label" x="130" y="480">Car 21</text>
+  <rect id="car-22" data-type="car" class="spot car" x="170" y="430" width="60" height="100" />
+  <text class="label" x="200" y="480">Car 22</text>
+  <rect id="car-23" data-type="car" class="spot car" x="240" y="430" width="60" height="100" />
+  <text class="label" x="270" y="480">Car 23</text>
+  <rect id="car-24" data-type="car" class="spot car" x="310" y="430" width="60" height="100" />
+  <text class="label" x="340" y="480">Car 24</text>
+  <rect id="car-25" data-type="car" class="spot car" x="380" y="430" width="60" height="100" />
+  <text class="label" x="410" y="480">Car 25</text>
+  <rect id="car-26" data-type="car" class="spot car" x="450" y="430" width="60" height="100" />
+  <text class="label" x="480" y="480">Car 26</text>
+  <rect id="car-27" data-type="car" class="spot car" x="520" y="430" width="60" height="100" />
+  <text class="label" x="550" y="480">Car 27</text>
+  <rect id="car-28" data-type="car" class="spot car" x="590" y="430" width="60" height="100" />
+  <text class="label" x="620" y="480">Car 28</text>
+  <rect id="car-29" data-type="car" class="spot car" x="660" y="430" width="60" height="100" />
+  <text class="label" x="690" y="480">Car 29</text>
+  <rect id="car-30" data-type="car" class="spot car" x="730" y="430" width="60" height="100" />
+  <text class="label" x="760" y="480">Car 30</text>
+
+  <!-- Row 4 -->
+  <rect id="car-31" data-type="car" class="spot car" x="100" y="550" width="60" height="100" />
+  <text class="label" x="130" y="600">Car 31</text>
+  <rect id="car-32" data-type="car" class="spot car" x="170" y="550" width="60" height="100" />
+  <text class="label" x="200" y="600">Car 32</text>
+  <rect id="car-33" data-type="car" class="spot car" x="240" y="550" width="60" height="100" />
+  <text class="label" x="270" y="600">Car 33</text>
+  <rect id="car-34" data-type="car" class="spot car" x="310" y="550" width="60" height="100" />
+  <text class="label" x="340" y="600">Car 34</text>
+  <rect id="car-35" data-type="car" class="spot car" x="380" y="550" width="60" height="100" />
+  <text class="label" x="410" y="600">Car 35</text>
+  <rect id="car-36" data-type="car" class="spot car" x="450" y="550" width="60" height="100" />
+  <text class="label" x="480" y="600">Car 36</text>
+  <rect id="car-37" data-type="car" class="spot car" x="520" y="550" width="60" height="100" />
+  <text class="label" x="550" y="600">Car 37</text>
+  <rect id="car-38" data-type="car" class="spot car" x="590" y="550" width="60" height="100" />
+  <text class="label" x="620" y="600">Car 38</text>
+  <rect id="car-39" data-type="car" class="spot car" x="660" y="550" width="60" height="100" />
+  <text class="label" x="690" y="600">Car 39</text>
+  <rect id="car-40" data-type="car" class="spot car" x="730" y="550" width="60" height="100" />
+  <text class="label" x="760" y="600">Car 40</text>
+
+  <!-- Bike Spots -->
+  <!-- Row 1 (Bikes perpendicular to car rows) -->
+  <rect id="bike-1" data-type="bike" class="spot bike" x="930" y="100" width="40" height="60" />
+  <text class="label" x="950" y="130">Bike 1</text>
+  <rect id="bike-2" data-type="bike" class="spot bike" x="980" y="100" width="40" height="60" />
+  <text class="label" x="1000" y="130">Bike 2</text>
+  <rect id="bike-3" data-type="bike" class="spot bike" x="1030" y="100" width="40" height="60" />
+  <text class="label" x="1050" y="130">Bike 3</text>
+  <rect id="bike-4" data-type="bike" class="spot bike" x="1080" y="100" width="40" height="60" />
+  <text class="label" x="1100" y="130">Bike 4</text>
+  <rect id="bike-5" data-type="bike" class="spot bike" x="930" y="180" width="40" height="60" />
+  <text class="label" x="950" y="210">Bike 5</text>
+  <rect id="bike-6" data-type="bike" class="spot bike" x="980" y="180" width="40" height="60" />
+  <text class="label" x="1000" y="210">Bike 6</text>
+  <rect id="bike-7" data-type="bike" class="spot bike" x="1030" y="180" width="40" height="60" />
+  <text class="label" x="1050" y="210">Bike 7</text>
+  <rect id="bike-8" data-type="bike" class="spot bike" x="1080" y="180" width="40" height="60" />
+  <text class="label" x="1100" y="210">Bike 8</text>
+  <rect id="bike-9" data-type="bike" class="spot bike" x="930" y="310" width="40" height="60" />
+  <text class="label" x="950" y="340">Bike 9</text>
+  <rect id="bike-10" data-type="bike" class="spot bike" x="980" y="310" width="40" height="60" />
+  <text class="label" x="1000" y="340">Bike 10</text>
+  <rect id="bike-11" data-type="bike" class="spot bike" x="1030" y="310" width="40" height="60" />
+  <text class="label" x="1050" y="340">Bike 11</text>
+  <rect id="bike-12" data-type="bike" class="spot bike" x="1080" y="310" width="40" height="60" />
+  <text class="label" x="1100" y="340">Bike 12</text>
+
+  <!-- Row 2 (Bikes perpendicular to car rows) -->
+  <rect id="bike-13" data-type="bike" class="spot bike" x="930" y="390" width="40" height="60" />
+  <text class="label" x="950" y="420">Bike 13</text>
+  <rect id="bike-14" data-type="bike" class="spot bike" x="980" y="390" width="40" height="60" />
+  <text class="label" x="1000" y="420">Bike 14</text>
+  <rect id="bike-15" data-type="bike" class="spot bike" x="1030" y="390" width="40" height="60" />
+  <text class="label" x="1050" y="420">Bike 15</text>
+  <rect id="bike-16" data-type="bike" class="spot bike" x="1080" y="390" width="40" height="60" />
+  <text class="label" x="1100" y="420">Bike 16</text>
+  <rect id="bike-17" data-type="bike" class="spot bike" x="930" y="510" width="40" height="60" />
+  <text class="label" x="950" y="540">Bike 17</text>
+  <rect id="bike-18" data-type="bike" class="spot bike" x="980" y="510" width="40" height="60" />
+  <text class="label" x="1000" y="540">Bike 18</text>
+  <rect id="bike-19" data-type="bike" class="spot bike" x="1030" y="510" width="40" height="60" />
+  <text class="label" x="1050" y="540">Bike 19</text>
+  <rect id="bike-20" data-type="bike" class="spot bike" x="1080" y="510" width="40" height="60" />
+  <text class="label" x="1100" y="540">Bike 20</text>
+  <rect id="bike-21" data-type="bike" class="spot bike" x="930" y="590" width="40" height="60" />
+  <text class="label" x="950" y="620">Bike 21</text>
+  <rect id="bike-22" data-type="bike" class="spot bike" x="980" y="590" width="40" height="60" />
+  <text class="label" x="1000" y="620">Bike 22</text>
+  <rect id="bike-23" data-type="bike" class="spot bike" x="1030" y="590" width="40" height="60" />
+  <text class="label" x="1050" y="620">Bike 23</text>
+  <rect id="bike-24" data-type="bike" class="spot bike" x="1080" y="590" width="40" height="60" />
+  <text class="label" x="1100" y="620">Bike 24</text>
+
+</svg>

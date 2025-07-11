@@ -1,0 +1,155 @@
+/* VehicleDetail.css */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f9f9fa, #f7f1f1);
+}
+
+.vehicle-detail-container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9f9fa, #f7f1f1);
+}
+
+/* Blurred background bubbles */
+.vehicle-detail-container::before,
+.vehicle-detail-container::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.vehicle-detail-container::before {
+  width: 300px;
+  height: 300px;
+  background: #ffc107;
+  top: 10%;
+  left: 5%;
+}
+
+.vehicle-detail-container::after {
+  width: 400px;
+  height: 400px;
+  background: #ffc107;
+  bottom: 10%;
+  right: 5%;
+}
+
+.vehicle-card {
+  position: relative;
+  background: rgba(33, 33, 33, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 50px 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.vehicle-card h2 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+}
+
+.vehicle-card p {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.vehicle-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vehicle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.vehicle-button.carr {
+  background: linear-gradient(135deg, #ffc107, #ffb300);
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.vehicle-button.bike {
+  background: linear-gradient(135deg, #ffc107, #ffb300);
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.vehicle-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+}
+
+.vehicle-button.car:hover {
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+}
+
+.vehicle-button.bike:hover {
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+}
+
+.vehicle-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  
+  .vehicle-card {
+    padding: 30px 20px;
+  }
+
+  .vehicle-card h2 {
+    font-size: 2rem;
+  }
+
+  .vehicle-button {
+    font-size: 1.1rem;
+    padding: 12px 16px;
+  }
+}

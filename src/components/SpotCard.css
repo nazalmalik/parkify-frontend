@@ -1,0 +1,121 @@
+.spot-card {
+  position: relative;
+  padding: 20px 16px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 12px;
+  max-width: 280px;
+}
+
+.spot-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  z-index: -1;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f3edda, #ffecb3);
+}
+
+.spot-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(255, 193, 7, 0.4);
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  gap: 10px;
+  margin-top: -5px;
+  
+}
+
+.status-badge.available {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.status-badge.unavailable {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.spot-id {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  margin-top: 29px;
+}
+
+/* Info lines */
+.spot-info {
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1rem;
+  color: #444;
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 1.1rem;
+  color: #ffc107;
+}
+
+/* Button */
+.reserve-btn {
+  margin-top: 14px;
+  background: linear-gradient(90deg, #ffc107, #ffb300);
+  border: none;
+  color: #222;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.reserve-btn:hover {
+  background: linear-gradient(90deg, #ffb300, #ffa000);
+}
+
+.reserve-btn:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+  color: #888;
+  box-shadow: none;
+}
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.icon {
+  font-weight: bold;
+  color: #ffc107;
+  font-size: 1.05rem;
+}

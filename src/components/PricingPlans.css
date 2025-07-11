@@ -1,0 +1,186 @@
+/* ===============================
+   Main Section
+================================= */
+.pricing-section {
+  background: #f9f9fa;
+  padding: 80px 0;
+  text-align: center;
+  border-radius: 0;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ===============================
+   Section Title
+================================= */
+.section-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #313131;
+  letter-spacing: 2px;
+}
+
+.tab-heading {
+  font-size: 1.5rem;
+  color: #757575;
+  margin-bottom: 30px;
+}
+
+/* ===============================
+   Toggle Buttons
+================================= */
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.toggle-buttons button {
+  padding: 10px 30px;
+  font-size: 1rem;
+  border-radius: 50px;
+  border: none;
+  background: #2c2c2c;
+  color: rgb(240, 240, 240);
+  transition: all 0.3s;
+}
+
+.toggle-buttons button:hover,
+.toggle-buttons button.active {
+  background: #ffc107;
+  color: #000;
+}
+button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* ===============================
+   Plan Card Styles
+================================= */
+.plan-card.card {
+ background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+ padding:30px 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 24px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+  max-width: 340px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+  margin-top: 40px;
+
+}
+
+.plan-card:hover.card {
+  transform: scale(1.05);
+  border-color: #ffc107;
+  background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
+  border-radius: 50px;
+}
+
+/* ===============================
+   Subscription Card Styles
+================================= */
+.subscription-card.card {
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+  border-radius: 40px;
+  padding: 55px 70px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  color: rgb(255, 255, 255);
+  transition: 0.3s;
+  max-width: 340px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+.subscription-card.card:hover {
+  transform: scale(1.05);
+  border-color: #ffc107;
+  background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
+  border-radius: 50px;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.plan-card:hover .icon-wrapper svg,
+.subscription-card:hover .icon-wrapper svg {
+  transform: scale(1.2);
+}
+
+/* ===============================
+   Plan Details
+================================= */
+.plan-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(248, 243, 243);
+}
+
+.plan-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-bottom: 15px;
+}
+
+.plan-features {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  color: #bdbcbc;
+  margin-bottom: 20px;
+}
+
+.plan-features li {
+  padding-left: 25px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.plan-features li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #ffc107;
+  font-weight: bold;
+}
+
+/* ===============================
+   Buttons
+================================= */
+.plans-btn,
+.subscription-card button {
+  background-color: #ffc107 !important;
+  color: #f9f9fa !important;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: bold !important;
+  transition: 0.3s;
+}
+
+.plans-btn:hover,
+.subscription-card button:hover {
+  background-color: white;
+  color: #000;
+}
+/* ===============================
+   Media Query
+================================= */
+@media (max-width: 768px) {
+  .plan-card.card {
+    margin: 30px auto 40px auto; /* center horizontally on small screens */
+  
+  }
+}
+

@@ -1,0 +1,224 @@
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-125deg, #131212, #20201d, #2b2a275e, #3d3c38);
+  background-size: 400% 400%;
+  animation: backgroundAnimation 10s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Glow effect */
+.loader-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 70%);
+  animation: pulseGlow 6s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Road setup */
+.road {
+  width: 400px;
+  height: 39px;
+  background: #202427;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px #00000033;
+  z-index: 2;
+}
+
+/* Car animation */
+.car {
+  width: 90px;
+  height: auto;
+  position: absolute;
+  top: -13px;
+  left: -100px;
+  animation: move-car 2.2s ease-out forwards;
+  z-index: 2;
+}
+
+.car-img {
+  width: 100%;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+@keyframes move-car {
+  0% { left: -120px; }
+  100% { left: 320px; }
+}
+
+/* Traffic light */
+.traffic-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(230px) translateY(-50%);
+  width: 26px;
+  height: 80px;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 0;
+  z-index: 2;
+}
+
+/* Traffic lights color */
+.light {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #888;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#red.on    { background-color: red;    opacity: 1; box-shadow: 0 0 8px red; }
+#yellow.on { background-color: yellow; opacity: 1; box-shadow: 0 0 8px yellow; }
+#green.on  { background-color: #00ff6a; opacity: 1; box-shadow: 0 0 8px #00ff6a; }
+
+/* Optional blinking text (not currently shown) */
+.loading-text {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: bolder;
+  margin-top: 20px;
+  animation: blink 1.2s infinite;
+  z-index: 2;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes backgroundAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+/* Tablet devices (width up to 768px) */
+@media (min-width: 769px) {
+  .road {
+    width: 400px;
+    height: 39px;
+    border-radius: 20px;
+  }
+
+  .car {
+    width: 90px;
+    top: -13px;
+    animation: move-car 2.2s ease-out forwards;
+  }
+
+  .traffic-light {
+    transform: translateX(230px) translateY(-50%);
+    width: 35px;
+    height: 90px;
+    padding: 5px 0;
+  }
+
+  .light {
+    width: 22px;
+    height: 22px;
+  }
+
+  .loading-text {
+    font-size: 2.2rem;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .road {
+    width: 55vw;
+    height: 5vw;
+    border-radius: 12px;
+  }
+
+  .car {
+    width: 20vw;
+    top: -1.8vw;
+    animation: move-car-mobile 2.2s ease-out forwards;
+  }
+
+  @keyframes move-car-mobile {
+    0% { left: -15vw; }
+    100% { left: 50vw; }
+  }
+
+  .traffic-light {
+    transform: translateX(30vw) translateY(-50%);
+    width: 5vw;
+    height: 16vw;
+    padding: 1vw 0;
+  }
+
+  .light {
+    width: 3.1vw;
+    height: 3.1vw;
+  }
+
+  .loading-text {
+    font-size: 1.6rem;
+    margin-top: 16px;
+    text-align: center;
+  }
+}
+
+/* Mobile devices (width up to 480px) */
+@media (max-width: 480px) {
+  .road {
+    width: 55vw;
+    height: 7vw;
+    border-radius: 10px;
+  }
+
+  .car {
+    width: 25vw;
+    top: -3vw;
+    animation: move-car-mobile-small 2.2s ease-out forwards;
+  }
+
+  @keyframes move-car-mobile-small {
+    0% { left: -30vw; }
+    100% { left: 50vw; }
+  }
+
+  .traffic-light {
+    transform: translateX(30vw) translateY(-50%);
+    width: 6vw;
+    height: 18vw;
+    padding: 1.5vw 0;
+  }
+
+  .light {
+    width: 3.5vw;
+    height: 3.5vw;
+  }
+
+  .loading-text {
+    font-size: 1.3rem;
+    margin-top: 14px;
+  }
+}
+

@@ -1,0 +1,62 @@
+/* NavigationPage.css */
+
+.navigation-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background-color: #f0f2f5;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navigation-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.navigation-container h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.navigation-summary {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.path-list {
+  display: none; /* Hide the technical path list */
+}
+
+.nav-instruction {
+  margin-top: 16px;
+  font-style: italic;
+  color: #555;
+  font-size: 15px;
+}
+
+/* Status and error messages */
+.status-message,
+.error-message {
+  font-size: 18px;
+  text-align: center;
+  padding: 40px;
+}
+
+.status-message {
+  color: #0077cc;
+}
+
+.error-message {
+  color: #cc0000;
+  font-weight: bold;
+}

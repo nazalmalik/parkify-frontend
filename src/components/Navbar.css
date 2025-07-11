@@ -1,0 +1,97 @@
+.custom-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 6px;
+}
+
+.custom-nav .nav-link:hover,
+.custom-nav .nav-link:focus {
+  color: #ffc107;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.custom-btn {
+  padding: 10px 20px;
+  font-weight: bolder;
+  border-radius: 8px;
+  border: none;
+  background-color: #ffc107;
+  color: #000;
+  transition: all 0.3s ease;
+  font-weight: bold !important;
+}
+
+.custom-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  background-color: #ffca2c;
+}
+
+.custom-user-dropdown .dropdown-toggle {
+  background: transparent !important;
+  border: none;
+  padding: 6px 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.custom-user-dropdown .dropdown-menu {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  border: 1px solid #333;
+  padding: 8px 0;
+}
+
+.custom-user-dropdown .dropdown-item {
+  color: #fff;
+  padding: 10px 20px;
+  transition: background 0.3s;
+}
+
+.custom-user-dropdown .dropdown-item:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.custom-user-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+
+/* 🔽 Mobile Responsive Tweaks */
+@media (max-width: 991px) {
+    .navbar-brand img {
+    height: 45px !important;
+    margin-left: -10px;
+  }
+
+  .custom-nav .nav-link {
+    padding: 10px 0;
+    text-align: left;
+    color: #fdfdfd;
+    background-color: transparent; /* default - no bg */
+    padding-left: 15px; /* adds left spacing */
+    transition: all 0.3s ease;
+  }
+
+  .custom-nav .nav-link:hover,
+  .custom-nav .nav-link:focus {
+    background-color: rgba(255, 255, 255, 0.1); /* yellow bg on hover */
+    color: #ffc107;
+    padding-left: 25px; /* more left padding on hover */
+  }
+
+
+
+  .custom-btn {
+    width: 100% ;
+    margin-top: 10px;
+  }
+
+  .custom-user-dropdown .dropdown-menu {
+    text-align: center;
+  }
+}

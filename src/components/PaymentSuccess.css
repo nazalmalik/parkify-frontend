@@ -1,0 +1,171 @@
+/* PaymentSuccess.css */
+
+.payment {
+  padding: 60px 20px;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.payment-success-container {
+  width: 100%;
+  max-width: 620px;
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  animation: fadeSlide 0.4s ease-in-out;
+  position: relative;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.payment-success-container h2 {
+  font-size: 2.2rem;
+  color: #28a745;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.booking-info {
+  text-align: left;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  color: #333;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.booking-info p {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.booking-info strong {
+  color: #000;
+  font-weight: 600;
+  min-width: 130px;
+}
+
+.qr-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.qr-section p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.qr-code {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  padding: 10px;
+  background-color: #fffbe6;
+  border: 2px dashed #ffc107;
+  margin: 0 auto;
+  animation: qrPop 0.5s ease;
+}
+
+.status-message,
+.error-message,
+.waiting-message {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+.status-message {
+  color: #555;
+}
+
+.error-message {
+  color: #dc3545;
+}
+
+.waiting-message {
+  font-style: italic;
+  color: #777;
+}
+
+/* Glowing navigation button */
+.start-navigation-btn {
+  margin: 2.5rem auto 0;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(255, 193, 7, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: glowingPulse 1.6s infinite alternate;
+}
+
+.start-navigation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.5);
+}
+
+.start-navigation-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 12px rgba(255, 152, 0, 0.4);
+}
+
+/* Animations */
+@keyframes glowingPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.7);
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes qrPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .payment-success-container {
+     margin-top: 90px;
+  }
+  .booking-info p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .start-navigation-btn {
+    width: 100%;
+  }
+}

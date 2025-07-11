@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+ 
+}
+.how-it-works-page {
+    width: 100%;
+    overflow-x: hidden;
+   
+  }
+  .tilted-hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background: url(../assets/howitwork.jpg) no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* Gradient only on the background image */
+  .tilted-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+    z-index: 1;
+  }
+  
+  .tilted-overlay {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .tilted-overlay h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  
+  .tilted-overlay p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+  
+  .tilted-wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    line-height: 0;
+  }
+  
+  .tilted-wave svg {
+    display: block;
+    margin-bottom: -1px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+
+  .working-section {
+    padding: 60px 20px;
+    background: #F9F9Fa;
+    text-align: center;
+    
+    
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: -30px;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 60px;
+  }
+  
+  /* Center the cards wrapper */
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+  }
+  
+  .step-row {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  .flow-step {
+    position: relative;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .circle-icon {
+    width: 100px;
+    height: 100px;
+    background: #ffffff;
+    border: 5px solid #ffc107;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+  }
+  
+  .step-number {
+    position: absolute;
+    top: -25px;
+    background: #fff;
+    color: #383838;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .icon {
+    font-size: 2rem;
+  }
+  
+  .step-content h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .step-content p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  /* Connector line */
+  .connector-line {
+    position: absolute;
+    top: 50px;
+    right: -50px;
+    width: 50px;
+    height: 1px;
+    background: repeating-linear-gradient(to right, #bbb, #bbb 4px, transparent 4px, transparent 8px);
+  }
+  
+  /* Responsive: Stack steps vertically */
+  @media (max-width: 768px) {
+    .step-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .connector-line {
+      display: none;
+    }
+  }
+  @media (max-width: 768px) {
+    .tilted-hero {
+      height: 60vh; /* smaller height on mobile */
+      background-position: center center;
+    }
+  
+    .tilted-overlay h1 {
+      font-size: 2rem; /* smaller heading */
+    }
+  
+    .tilted-overlay p {
+      font-size: 1rem; /* smaller paragraph */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tilted-hero {
+      height: 50vh;
+    }
+  
+    .tilted-overlay h1 {
+      font-size: 1.6rem;
+    }
+  
+    .tilted-overlay p {
+      font-size: 0.9rem;
+    }
+  }
