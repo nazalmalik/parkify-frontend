@@ -5,7 +5,7 @@ import {
   FaTachometerAlt, FaListAlt, FaSignOutAlt, FaInfoCircle 
 } from 'react-icons/fa';
 import { toast } from 'react-toastify'; // ✅ Toastify import
-import './sidebar.css';
+import './Sidebar.css';
 
 const Sidebar = () => {
   const navigate = useNavigate();
