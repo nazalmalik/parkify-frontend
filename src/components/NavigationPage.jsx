@@ -1,5 +1,3 @@
-// src/pages/NavigationPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBooking } from '../api/booking';
@@ -21,15 +19,17 @@ const NavigationPage = () => {
 
   const [startPoint, setStartPoint] = useState('entrance-1');
   const [endPoint, setEndPoint] = useState('');
-  const [vehicleType, setVehicleType] = useState('car');
+  const [vehicleType, setVehicleType] = useState('car'); // Default to car
 
   useEffect(() => {
     const fetchPath = async () => {
       try {
+        // 1. Get booking info
         const booking = await getBooking(bookingId);
         setEndPoint(booking.spotId);
         setVehicleType(booking.vehicleType || 'car');
 
+        // 2. Call navigation API
         const res = await axiosInstance.get('/navigation/path', {
           params: {
             start: startPoint,
@@ -41,6 +41,7 @@ const NavigationPage = () => {
         setPathSteps(pathArray);
         setDistance(distance);
 
+        // 3. Convert coordinates to SVG path
         const svgD = coordinatesToPathD(coordinates);
         setPathData({
           pathD: svgD,
@@ -64,46 +65,42 @@ const NavigationPage = () => {
     }
   }, [bookingId, startPoint]);
 
+  if (loading) return <div className="status-message">🚗 Loading navigation path...</div>;
+  if (error) return <div className="error-message">❌ {error}</div>;
+
   return (
     <>
-      <Navigation />
-
+  
       <div className="navigation-page">
-        {loading ? (
-          <div className="status-message">🚗 Loading navigation path...</div>
-        ) : error ? (
-          <div className="error-message">❌ {error}</div>
-        ) : (
-          <div className="navigation-container">
-            <h2>🧭 Navigation to Your Parking Spot</h2>
+        <div className="navigation-container">
+          <h2>🧭 Navigation to Your Parking Spot</h2>
 
-            <div className="navigation-summary">
-              You're moving from <strong>{startPoint}</strong> to <strong>{endPoint}</strong>.
-              <br />
-              Estimated distance: <strong>{distance} meters</strong>
-            </div>
-
-            <div className="path-list">
-              <h4>📍 Path Steps:</h4>
-              <ul>
-                {pathSteps.map((node, index) => (
-                  <li key={index}>{node}</li>
-                ))}
-              </ul>
-            </div>
-
-            {pathData && (
-              <NavigationMap pathData={pathData} vehicleType={vehicleType} />
-            )}
-
-            <p className="nav-instruction">🗺️ Follow the highlighted path to your parking spot.</p>
+          <div className="navigation-summary">
+            You're moving from <strong>{startPoint}</strong> to <strong>{endPoint}</strong>.
+            <br />
+            Estimated distance: <strong>{distance} meters</strong>
           </div>
-        )}
+
+          <div className="path-list">
+            <h4>📍 Path Steps:</h4>
+            <ul>
+              {pathSteps.map((node, index) => (
+                <li key={index}>{node}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ✅ Pass vehicleType explicitly */}
+          {pathData && (
+            <NavigationMap pathData={pathData} vehicleType={vehicleType} />
+          )}
+
+          <p className="nav-instruction">🗺️ Follow the highlighted path to your parking spot.</p>
+        </div>
       </div>
 
-      <Footer />
     </>
   );
 };
 
-export default NavigationPage;
+export default NavigationPage;   
