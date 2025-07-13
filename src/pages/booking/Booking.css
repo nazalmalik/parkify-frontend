@@ -1,4 +1,4 @@
-/* Booking.css */
+/* src/pages/Booking/Booking.css */
 
 .booking {
   background: linear-gradient(to right, #fdfbfb, #ebedee);
@@ -7,6 +7,16 @@
   display: flex;
   justify-content: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Loader and Fallback States */
+.loading-state {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #555;
 }
 
 .booking-summary {
