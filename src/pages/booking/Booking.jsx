@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, createStripeSession } from '../../api/booking';
 import './Booking.css';
-import Navigation from '../Navbar';
-import Footer from '../Footer';
 
 const Booking = () => {
   const location = useLocation();
@@ -24,6 +22,7 @@ const Booking = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Redirect if booking details are missing (e.g. direct access)
     if (!spotId || !vehicleType || !licensePlate || !bookingDate || !startTime || !endTime) {
       alert("Missing booking details. Redirecting to home.");
       navigate('/');
@@ -43,7 +42,6 @@ const Booking = () => {
           endTime,
         });
 
-        console.log("🎯 Booking response:", res);
         setBookingId(res.bookingId);
         setTotalPrice(res.totalPrice);
       } catch (err) {
@@ -68,29 +66,25 @@ const Booking = () => {
     }
   };
 
-  return (
-    <>
-      <Navigation />
-      <div className="booking">
-        {loading ? (
-          <div className="loading-state">⏳ Booking in progress...</div>
-        ) : (
-          <div className="booking-summary">
-            <h2>Booking Summary</h2>
-            <p><strong>Spot ID:</strong> {spotId}</p>
-            <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-            <p><strong>License Plate:</strong> {licensePlate}</p>
-            <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-            <p><strong>Start Time:</strong> {startTime}</p>
-            <p><strong>End Time:</strong> {endTime}</p>
-            <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
+  if (loading) return <p>Processing your booking...</p>;
 
-            <button onClick={handlePayment}>Proceed to Payment</button>
-          </div>
-        )}
+  if (!bookingId || totalPrice === null) return <p>Loading booking summary...</p>;
+
+  return (
+    <div className="booking">
+      <div className="booking-summary">
+        <h2>Booking Summary</h2>
+        <p><strong>Spot ID:</strong> {spotId}</p>
+        <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+        <p><strong>License Plate:</strong> {licensePlate}</p>
+        <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+        <p><strong>Start Time:</strong> {startTime}</p>
+        <p><strong>End Time:</strong> {endTime}</p>
+        <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
+
+        <button onClick={handlePayment}>Proceed to Payment</button>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 
