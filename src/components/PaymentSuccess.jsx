@@ -1,11 +1,8 @@
-// src/pages/PaymentSuccess.jsx
-
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { getBooking, markAsPaid, getQRScanStatus } from '../api/booking';
 import './PaymentSuccess.css';
-import Navigation from './Navbar.jsx';
-import Footer from './Footer.jsx';
+
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -18,6 +15,7 @@ const PaymentSuccess = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // ✅ Fetch booking details and mark as paid
   useEffect(() => {
     const processPaymentSuccess = async () => {
       try {
@@ -43,6 +41,7 @@ const PaymentSuccess = () => {
     }
   }, [bookingId]);
 
+  // ✅ Poll every 3 seconds to check QR scan status
   useEffect(() => {
     if (!bookingId) return;
 
@@ -71,52 +70,64 @@ const PaymentSuccess = () => {
     totalPrice,
   } = booking || {};
 
+  if (loading) {
+    return (
+      <>
+      
+        <div className="status-message">🔄 Processing payment...</div>
+    
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+      
+        <div className="error-message">❌ {error}</div>
+       
+      </>
+    );
+  }
+
   return (
     <>
-      <Navigation />
+      
+      <div className='payment'>
+        <div className="payment-success-container">
+          <h2>✅ Payment Successful!</h2>
 
-      <div className="payment">
-        {loading ? (
-          <div className="status-message">🔄 Processing payment...</div>
-        ) : error ? (
-          <div className="error-message">❌ {error}</div>
-        ) : (
-          <div className="payment-success-container">
-            <h2>✅ Payment Successful!</h2>
-
-            <div className="booking-info">
-              <p><strong>Booking ID:</strong> {bookingId}</p>
-              <p><strong>Parking Spot:</strong> {spotId}</p>
-              <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-              <p><strong>License Plate:</strong> {licensePlate}</p>
-              <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-              <p><strong>Start Time:</strong> {startTime}</p>
-              <p><strong>End Time:</strong> {endTime}</p>
-              <p><strong>Total Price:</strong> Rs. {totalPrice}</p>
-            </div>
-
-            <div className="qr-section">
-              <p>📱 Scan this QR Code at the entrance:</p>
-              <img src={qrCode} alt="QR Code" className="qr-code" />
-            </div>
-
-            {qrScanned ? (
-              <button
-                className="start-navigation-btn"
-                onClick={() => navigate(`/navigate/${bookingId}`)}
-              >
-                🚗 Start Navigation
-              </button>
-            ) : (
-              <p className="waiting-message">⌛ Waiting for QR scan...</p>
-            )}
+          <div className="booking-info">
+            <p><strong>Booking ID:</strong> {bookingId}</p>
+            <p><strong>Parking Spot:</strong> {spotId}</p>
+            <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+            <p><strong>License Plate:</strong> {licensePlate}</p>
+            <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+            <p><strong>Start Time:</strong> {startTime}</p>
+            <p><strong>End Time:</strong> {endTime}</p>
+            <p><strong>Total Price:</strong> Rs. {totalPrice}</p>
           </div>
-        )}
-      </div>
 
-      <Footer />
+          <div className="qr-section">
+            <p>📱 Scan this QR Code at the entrance:</p>
+            <img src={qrCode} alt="QR Code" className="qr-code" />
+          </div>
+
+          {qrScanned ? (
+            <button
+              className="start-navigation-btn"
+              onClick={() => navigate(/navigate/${bookingId})}
+            >
+              🚗 Start Navigation
+            </button>
+          ) : (
+            <p className="waiting-message">⌛ Waiting for QR scan...</p>
+          )}
+        </div>
+      </div>
+    
     </>
   );
 };
 
-export default PaymentSuccess;
+export default PaymentSuccess;   
