@@ -1,3 +1,5 @@
+/* PaymentSuccess.css */
+
 .payment {
   padding: 60px 20px;
   background: linear-gradient(to right, #f8f9fa, #e9ecef);
@@ -6,28 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  box-sizing: border-box;
-}
-
-/* Reuse for loading and error states */
-.status-message,
-.error-message {
-  font-size: 1.1rem;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px;
-}
-
-.status-message {
-  color: #555;
-}
-
-.error-message {
-  color: #dc3545;
-  font-weight: bold;
 }
 
 .payment-success-container {
@@ -95,10 +75,23 @@
   animation: qrPop 0.5s ease;
 }
 
+.status-message,
+.error-message,
 .waiting-message {
   text-align: center;
   font-size: 1.1rem;
   margin-top: 2rem;
+}
+
+.status-message {
+  color: #555;
+}
+
+.error-message {
+  color: #dc3545;
+}
+
+.waiting-message {
   font-style: italic;
   color: #777;
 }
@@ -164,9 +157,8 @@
 /* Responsive tweaks */
 @media (max-width: 600px) {
   .payment-success-container {
-    margin-top: 90px;
+     margin-top: 90px;
   }
-
   .booking-info p {
     flex-direction: column;
     align-items: flex-start;
