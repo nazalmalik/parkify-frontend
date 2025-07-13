@@ -1,5 +1,3 @@
-// src/pages/Booking/Booking.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, createStripeSession } from '../../api/booking';
@@ -24,6 +22,7 @@ const Booking = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // Redirect if booking details are missing (e.g. direct access)
     if (!spotId || !vehicleType || !licensePlate || !bookingDate || !startTime || !endTime) {
       alert("Missing booking details. Redirecting to home.");
       navigate('/');
@@ -67,21 +66,9 @@ const Booking = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="booking loading-state">
-        <p>Processing your booking...</p>
-      </div>
-    );
-  }
+  if (loading) return <p>Processing your booking...</p>;
 
-  if (!bookingId || totalPrice === null) {
-    return (
-      <div className="booking loading-state">
-        <p>Loading booking summary...</p>
-      </div>
-    );
-  }
+  if (!bookingId || totalPrice === null) return <p>Loading booking summary...</p>;
 
   return (
     <div className="booking">
@@ -101,4 +88,4 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+export default Booking; 
