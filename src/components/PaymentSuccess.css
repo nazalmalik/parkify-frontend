@@ -83,7 +83,11 @@
 .waiting-message {
   text-align: center;
   font-size: 1.1rem;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  min-height: 70vh; /* Ensures enough space before footer during loading */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .status-message {
