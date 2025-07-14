@@ -188,8 +188,8 @@
 /* Mobile devices (width up to 480px) */
 @media (max-width: 480px) {
   .road {
-    width: 55vw;
-    height: 7.5vw;
+    width: 58vw;
+    height: 8vw;
     border-radius: 10px;
   }
 
