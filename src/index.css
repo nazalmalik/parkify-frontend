@@ -50,6 +50,3 @@ html, body {
   overflow-y: auto;
   scroll-behavior: auto;
 }
-html {
-  scroll-behavior: smooth;
-}
