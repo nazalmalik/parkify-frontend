@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, createStripeSession } from '../../api/booking';
-import Navigation from '../Navbar';
-import Footer from '../Footer';
 import './Booking.css';
 
 const Booking = () => {
@@ -77,7 +75,6 @@ const Booking = () => {
 
   return (
     <div className="booking-page">
-      <Navigation />
 
       <div className="booking-content">
         {loading || countdown > 0 ? (
@@ -104,8 +101,6 @@ const Booking = () => {
           </div>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };
