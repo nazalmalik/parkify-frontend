@@ -76,35 +76,36 @@ const Booking = () => {
     }
   };
 
-  return (
-    <>
-      <div className="booking">
-        {loading || countdown > 0 ? (
-          <div className="booking-loader">
-            <h2>🕒 Confirming Booking in</h2>
-            <h1 className="countdown-number">{countdown}</h1>
-          </div>
-        ) : !bookingId || totalPrice === null ? (
-          <div className="booking-loader">
-            <p>Loading booking summary...</p>
-          </div>
-        ) : (
-          <div className="booking-summary">
-            <h2>Booking Summary</h2>
-            <p><strong>Spot ID:</strong> {spotId}</p>
-            <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-            <p><strong>License Plate:</strong> {licensePlate}</p>
-            <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-            <p><strong>Start Time:</strong> {startTime}</p>
-            <p><strong>End Time:</strong> {endTime}</p>
-            <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
+ return (
+  <div className="booking-page">
+    <div className="booking">
+      {loading || countdown > 0 ? (
+        <div className="booking-loader">
+          <h2>🕒 Confirming Booking in</h2>
+          <h1 className="countdown-number">{countdown}</h1>
+        </div>
+      ) : !bookingId || totalPrice === null ? (
+        <div className="booking-loader">
+          <p>Loading booking summary...</p>
+        </div>
+      ) : (
+        <div className="booking-summary">
+          <h2>Booking Summary</h2>
+          <p><strong>Spot ID:</strong> {spotId}</p>
+          <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+          <p><strong>License Plate:</strong> {licensePlate}</p>
+          <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+          <p><strong>Start Time:</strong> {startTime}</p>
+          <p><strong>End Time:</strong> {endTime}</p>
+          <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
 
-            <button onClick={handlePayment}>Proceed to Payment</button>
-          </div>
-        )}
-      </div>
-    </>
-  );
+          <button onClick={handlePayment}>Proceed to Payment</button>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
 };
 
 export default Booking;
