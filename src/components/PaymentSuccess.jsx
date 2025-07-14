@@ -116,7 +116,7 @@ const PaymentSuccess = () => {
           {qrScanned ? (
             <button
               className="start-navigation-btn"
-              onClick={() => navigate(/navigate/${bookingId})}
+             onClick={() => navigate(`/navigate/${bookingId}`)}
             >
               🚗 Start Navigation
             </button>
