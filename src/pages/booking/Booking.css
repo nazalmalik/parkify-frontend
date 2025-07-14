@@ -1,12 +1,13 @@
 .booking {
   background: linear-gradient(to right, #fdfbfb, #ebedee);
-  min-height: 90vh;
-  padding: 60px 20px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 60px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 /* Loader and countdown state */
 .booking-loader {
