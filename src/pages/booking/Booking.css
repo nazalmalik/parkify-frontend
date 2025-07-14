@@ -8,15 +8,15 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.booking {
+.booking-content {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Top-align and allow scroll if needed */
-  min-height: 100vh;
-  padding: 100px 20px 60px; /* Top padding adds space below navbar */
-  background: linear-gradient(to right, #fdfbfb, #ebedee);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center; /* ✅ Center vertically */
+  padding: 100px 20px 60px;
+  min-height: calc(100vh - 80px);
 }
+
 
 /* Countdown Loader */
 .booking-loader {
