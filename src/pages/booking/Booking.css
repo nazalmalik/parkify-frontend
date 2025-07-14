@@ -9,11 +9,13 @@
 }
 
 .booking {
-  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 100px 20px 60px; /* 🔥 Top padding fixed to prevent overlap with navbar */
+  align-items: flex-start; /* Top-align and allow scroll if needed */
+  min-height: 100vh;
+  padding: 100px 20px 60px; /* Top padding adds space below navbar */
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Countdown Loader */
@@ -48,6 +50,7 @@
   width: 100%;
   max-width: 450px;
   padding: 35px 30px;
+  margin-top: 40px; /* ✅ Applies visual top spacing */
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.5s ease;
