@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, createStripeSession } from '../../api/booking';
+import Navigation from '../Navbar';
+import Footer from '../Footer';
 import './Booking.css';
 
 const Booking = () => {
@@ -21,7 +23,8 @@ const Booking = () => {
 
   const [totalPrice, setTotalPrice] = useState(null);
   const [bookingId, setBookingId] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
     if (!spotId || !vehicleType || !licensePlate || !bookingDate || !startTime || !endTime) {
@@ -32,7 +35,6 @@ const Booking = () => {
 
     const submitBooking = async () => {
       try {
-        setLoading(true);
         const res = await createBooking({
           userId,
           spotId,
@@ -57,6 +59,13 @@ const Booking = () => {
     submitBooking();
   }, [userId, spotId, vehicleType, licensePlate, bookingDate, startTime, endTime, navigate]);
 
+  // Countdown animation
+  useEffect(() => {
+    if (loading || countdown <= 0) return;
+    const timer = setTimeout(() => setCountdown(prev => prev - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countdown, loading]);
+
   const handlePayment = async () => {
     try {
       const { sessionUrl } = await createStripeSession(bookingId);
@@ -67,37 +76,34 @@ const Booking = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="booking loading-state">
-        <p>Processing your booking...</p>
-      </div>
-    );
-  }
-
-  if (!bookingId || totalPrice === null) {
-    return (
-      <div className="booking loading-state">
-        <p>Loading booking summary...</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="booking">
-      <div className="booking-summary">
-        <h2>Booking Summary</h2>
-        <p><strong>Spot ID:</strong> {spotId}</p>
-        <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-        <p><strong>License Plate:</strong> {licensePlate}</p>
-        <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-        <p><strong>Start Time:</strong> {startTime}</p>
-        <p><strong>End Time:</strong> {endTime}</p>
-        <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
+    <>
+      <div className="booking">
+        {loading || countdown > 0 ? (
+          <div className="booking-loader">
+            <h2>🕒 Confirming Booking in</h2>
+            <h1 className="countdown-number">{countdown}</h1>
+          </div>
+        ) : !bookingId || totalPrice === null ? (
+          <div className="booking-loader">
+            <p>Loading booking summary...</p>
+          </div>
+        ) : (
+          <div className="booking-summary">
+            <h2>Booking Summary</h2>
+            <p><strong>Spot ID:</strong> {spotId}</p>
+            <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+            <p><strong>License Plate:</strong> {licensePlate}</p>
+            <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+            <p><strong>Start Time:</strong> {startTime}</p>
+            <p><strong>End Time:</strong> {endTime}</p>
+            <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
 
-        <button onClick={handlePayment}>Proceed to Payment</button>
+            <button onClick={handlePayment}>Proceed to Payment</button>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
