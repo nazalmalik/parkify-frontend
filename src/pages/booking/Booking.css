@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to right, #fdfbfb, #ebedee);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .booking {
@@ -13,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  padding: 100px 20px 60px; /* 🔥 Top padding fixed to prevent overlap with navbar */
 }
 
 /* Countdown Loader */
@@ -22,6 +22,11 @@
   font-size: 1.4rem;
   color: #555;
   padding: 40px;
+}
+
+.booking-loader h2 {
+  margin-top: 60px; /* ✅ Extra spacing from navbar */
+  font-weight: 600;
 }
 
 .countdown-number {
@@ -45,7 +50,6 @@
   padding: 35px 30px;
   border-radius: 16px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-  margin-top: 20px;
   animation: fadeIn 0.5s ease;
 }
 
@@ -72,14 +76,13 @@
   align-items: center;
 }
 
-/* Label */
 .booking-summary p strong {
   font-weight: 600;
   min-width: 120px;
   color: #222;
 }
 
-/* Button */
+/* Payment Button */
 .booking-summary button {
   margin-top: 25px;
   width: 100%;
