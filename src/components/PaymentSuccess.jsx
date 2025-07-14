@@ -3,7 +3,6 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { getBooking, markAsPaid, getQRScanStatus } from '../api/booking';
 import './PaymentSuccess.css';
 
-
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
   const bookingId = searchParams.get('bookingId');
@@ -15,7 +14,6 @@ const PaymentSuccess = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // ✅ Fetch booking details and mark as paid
   useEffect(() => {
     const processPaymentSuccess = async () => {
       try {
@@ -41,7 +39,6 @@ const PaymentSuccess = () => {
     }
   }, [bookingId]);
 
-  // ✅ Poll every 3 seconds to check QR scan status
   useEffect(() => {
     if (!bookingId) return;
 
@@ -71,29 +68,16 @@ const PaymentSuccess = () => {
   } = booking || {};
 
   if (loading) {
-    return (
-      <>
-      
-        <div className="status-message">🔄 Processing payment...</div>
-    
-      </>
-    );
+    return <div className="status-message">🔄 Processing payment...</div>;
   }
 
   if (error) {
-    return (
-      <>
-      
-        <div className="error-message">❌ {error}</div>
-       
-      </>
-    );
+    return <div className="error-message">❌ {error}</div>;
   }
 
   return (
-    <>
-      <div className="payment-success-page">
-      <main className='payment'>
+    <div className="payment-success-page">
+      <main className="payment">
         <div className="payment-success-container">
           <h2>✅ Payment Successful!</h2>
 
@@ -114,10 +98,7 @@ const PaymentSuccess = () => {
           </div>
 
           {qrScanned ? (
-            <button
-              className="start-navigation-btn"
-             onClick={() => navigate(`/navigate/${bookingId}`)}
-            >
+            <button className="start-navigation-btn" onClick={() => navigate(`/navigate/${bookingId}`)}>
               🚗 Start Navigation
             </button>
           ) : (
@@ -125,10 +106,8 @@ const PaymentSuccess = () => {
           )}
         </div>
       </main>
-      </div>
-    
-    </>
+    </div>
   );
 };
 
-export default PaymentSuccess;   
+export default PaymentSuccess;
