@@ -1,22 +1,38 @@
-/* src/pages/Booking/Booking.css */
-
 .booking {
   background: linear-gradient(to right, #fdfbfb, #ebedee);
+  min-height: 90vh;
   padding: 60px 20px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Loader and Fallback States */
-.loading-state {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Loader and countdown state */
+.booking-loader {
+  text-align: center;
+  font-size: 1.4rem;
   color: #555;
+  padding: 40px;
+}
+
+.countdown-number {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-top: 10px;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .booking-summary {
@@ -28,7 +44,7 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
   position: relative;
-  margin-top: 70px;
+  margin-top: 40px;
 }
 
 .booking-summary:hover {
