@@ -92,8 +92,8 @@ const PaymentSuccess = () => {
 
   return (
     <>
-      
-      <div className='payment'>
+      <div className="payment-success-page">
+      <main className='payment'>
         <div className="payment-success-container">
           <h2>✅ Payment Successful!</h2>
 
@@ -124,6 +124,7 @@ const PaymentSuccess = () => {
             <p className="waiting-message">⌛ Waiting for QR scan...</p>
           )}
         </div>
+      </main>
       </div>
     
     </>
