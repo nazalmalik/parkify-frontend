@@ -1,10 +1,15 @@
 /* PaymentSuccess.css */
 
+.payment-success-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .payment {
+  flex: 1;
   padding: 60px 20px;
   background: linear-gradient(to right, #f8f9fa, #e9ecef);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
