@@ -1,13 +1,14 @@
+// src/pages/Booking/Booking.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { createBooking, initiateJazzCashPayment } from '../../api/booking';
+import { createBooking,  initiateJazzCashPayment } from '../../api/booking';
 import './Booking.css';
-import Navigation from '../../components/Navbar.jsx';
-import Footer from '../../components/Footer.jsx';
 
 const Booking = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
   const {
     userId,
     spotId,
@@ -20,17 +21,17 @@ const Booking = () => {
 
   const [totalPrice, setTotalPrice] = useState(null);
   const [bookingId, setBookingId] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [countdown, setCountdown] = useState(3);
-  const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
-    const submitBooking = async () => {
-      if (!spotId || !vehicleType || !licensePlate || !bookingDate || !startTime || !endTime) {
-        alert("Missing booking details.");
-        navigate('/');
-        return;
-      }
+    if (!spotId || !vehicleType || !licensePlate || !bookingDate || !startTime || !endTime) {
+      alert("Missing booking details. Redirecting to home.");
+      navigate('/');
+      return;
+    }
 
+    const submitBooking = async () => {
       try {
         const res = await createBooking({
           userId,
@@ -41,32 +42,28 @@ const Booking = () => {
           startTime,
           endTime,
         });
+
         setBookingId(res.bookingId);
         setTotalPrice(res.totalPrice);
       } catch (err) {
-        alert('Booking failed. Try again.');
+        console.error('Booking failed:', err);
+        alert('Booking failed. Please try again.');
         navigate('/');
+      } finally {
+        setLoading(false);
       }
     };
 
     submitBooking();
-  }, []);
+  }, [userId, spotId, vehicleType, licensePlate, bookingDate, startTime, endTime, navigate]);
 
   useEffect(() => {
-    if (!bookingId) return;
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev === 1) {
-          clearInterval(timer);
-          setShowSummary(true);
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [bookingId]);
+    if (loading || countdown <= 0) return;
+    const timer = setTimeout(() => setCountdown(prev => prev - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countdown, loading]);
 
-  const handlePayment = async () => {
+    const handlePayment = async () => {
     try {
       const { url } = await initiateJazzCashPayment(bookingId);
       window.location.href = url;
@@ -74,36 +71,38 @@ const Booking = () => {
       alert('JazzCash payment failed. Please try again.');
       console.error(err);
     }
-  };
+  }; 
 
   return (
-    <>
-      <Navigation />
-      <div className="booking-page">
-        <div className="booking-content">
-          {!showSummary ? (
-            <div className="booking-loader">
-              <h2>Confirming Booking in</h2>
-              <div className="countdown-number">{countdown}</div>
-            </div>
-          ) : (
-            <div className="booking-summary">
-              <h2>Booking Summary</h2>
-              <p><strong>Spot ID:</strong> {spotId}</p>
-              <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-              <p><strong>License Plate:</strong> {licensePlate}</p>
-              <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-              <p><strong>Start Time:</strong> {startTime}</p>
-              <p><strong>End Time:</strong> {endTime}</p>
-              <p><strong>Total Price:</strong> PKR {totalPrice}</p>
-              <button onClick={handlePayment}>Proceed to Payment</button>
-            </div>
-          )}
-        </div>
+    <div className="booking-page">
+
+      <div className="booking-content">
+        {loading || countdown > 0 ? (
+          <div className="booking-loader">
+            <h2>🕒 Confirming Booking in</h2>
+            <h1 className="countdown-number">{countdown}</h1>
+          </div>
+        ) : !bookingId || totalPrice === null ? (
+          <div className="booking-loader">
+            <p>Loading booking summary...</p>
+          </div>
+        ) : (
+          <div className="booking-summary">
+            <h2>Booking Summary</h2>
+            <p><strong>Spot ID:</strong> {spotId}</p>
+            <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+            <p><strong>License Plate:</strong> {licensePlate}</p>
+            <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+            <p><strong>Start Time:</strong> {startTime}</p>
+            <p><strong>End Time:</strong> {endTime}</p>
+            <p><strong>Total Price:</strong> Rs.{totalPrice}</p>
+
+            <button onClick={handlePayment}>Proceed to Payment</button>
+          </div>
+        )}
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 
-export default Booking;
+export default Booking; 
