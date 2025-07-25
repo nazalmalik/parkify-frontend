@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { createBooking,  initiateJazzCashPayment } from '../../api/booking';
+import { createBooking, createStripeSession } from '../../api/booking';
 import './Booking.css';
 
 const Booking = () => {
@@ -63,15 +63,15 @@ const Booking = () => {
     return () => clearTimeout(timer);
   }, [countdown, loading]);
 
-    const handlePayment = async () => {
+  const handlePayment = async () => {
     try {
-      const { url } = await initiateJazzCashPayment(bookingId);
-      window.location.href = url;
+      const { sessionUrl } = await createStripeSession(bookingId);
+      window.location.href = sessionUrl;
     } catch (err) {
-      alert('JazzCash payment failed. Please try again.');
-      console.error(err);
+      console.error('Stripe session error:', err);
+      alert('Stripe payment session could not be created. Please try again later.');
     }
-  }; 
+  };
 
   return (
     <div className="booking-page">
