@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, initiateJazzCashPayment } from '../../api/booking';
 import './Booking.css';
-import Navigation from '../../components/Navbar.jsx';
-import Footer from '../../components/Footer.jsx';
 
 
 const Booking = () => {
@@ -14,14 +12,16 @@ const Booking = () => {
     spotId,
     vehicleType,
     licensePlate,
-    bookingDate, // NEW FIELD (e.g., "2025-06-06")
-    startTime,   // (e.g., "14:00")
-    endTime,     // (e.g., "16:00")
+    bookingDate,
+    startTime,
+    endTime,
   } = location.state || {};
 
   const [totalPrice, setTotalPrice] = useState(null);
   const [bookingId, setBookingId] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [countdown, setCountdown] = useState(3);
+  const [showSummary, setShowSummary] = useState(false);
 
   useEffect(() => {
     const submitBooking = async () => {
@@ -32,7 +32,6 @@ const Booking = () => {
       }
 
       try {
-        setLoading(true);
         const res = await createBooking({
           userId,
           spotId,
@@ -47,13 +46,27 @@ const Booking = () => {
       } catch (err) {
         alert('Booking failed. Try again.');
         navigate('/');
-      } finally {
-        setLoading(false);
       }
     };
 
     submitBooking();
   }, []);
+
+  // Countdown effect
+  useEffect(() => {
+    if (!bookingId) return;
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev === 1) {
+          clearInterval(timer);
+          setShowSummary(true);
+          setLoading(false);
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [bookingId]);
 
   const handlePayment = async () => {
     try {
@@ -65,26 +78,32 @@ const Booking = () => {
     }
   };
 
-  if (loading || !bookingId) return <p>Processing your booking...</p>;
-
   return (
     <>
-    <Navigation />
-    <div className="booking">
-      <div className="booking-summary">
-        <h2>Booking Summary</h2>
-        <p><strong>Spot ID:</strong> {spotId}</p>
-        <p><strong>Vehicle Type:</strong> {vehicleType}</p>
-        <p><strong>License Plate:</strong> {licensePlate}</p>
-        <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
-        <p><strong>Start Time:</strong> {startTime}</p>
-        <p><strong>End Time:</strong> {endTime}</p>
-        <p><strong>Total Price:</strong> PKR {totalPrice}</p>
 
-        <button onClick={handlePayment}>Proceed to Payment</button>
+      <div className="booking-page-wrapper">
+        <div className="booking">
+          {!showSummary ? (
+            <div className="countdown">
+              <h2>Confirming Booking in {countdown}...</h2>
+            </div>
+          ) : (
+            <div className="booking-summary">
+              <h2>Booking Summary</h2>
+              <p><strong>Spot ID:</strong> {spotId}</p>
+              <p><strong>Vehicle Type:</strong> {vehicleType}</p>
+              <p><strong>License Plate:</strong> {licensePlate}</p>
+              <p><strong>Date:</strong> {new Date(bookingDate).toLocaleDateString()}</p>
+              <p><strong>Start Time:</strong> {startTime}</p>
+              <p><strong>End Time:</strong> {endTime}</p>
+              <p><strong>Total Price:</strong> PKR {totalPrice}</p>
+
+              <button onClick={handlePayment}>Proceed to Payment</button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-     <Footer />
+
     </>
   );
 };
