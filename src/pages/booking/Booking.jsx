@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createBooking, initiateJazzCashPayment } from '../../api/booking';
 import './Booking.css';
-
+import Navigation from '../../components/Navbar.jsx';
+import Footer from '../../components/Footer.jsx';
 
 const Booking = () => {
   const location = useLocation();
@@ -19,7 +20,6 @@ const Booking = () => {
 
   const [totalPrice, setTotalPrice] = useState(null);
   const [bookingId, setBookingId] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [countdown, setCountdown] = useState(3);
   const [showSummary, setShowSummary] = useState(false);
 
@@ -52,7 +52,6 @@ const Booking = () => {
     submitBooking();
   }, []);
 
-  // Countdown effect
   useEffect(() => {
     if (!bookingId) return;
     const timer = setInterval(() => {
@@ -60,7 +59,6 @@ const Booking = () => {
         if (prev === 1) {
           clearInterval(timer);
           setShowSummary(true);
-          setLoading(false);
         }
         return prev - 1;
       });
@@ -80,12 +78,13 @@ const Booking = () => {
 
   return (
     <>
-
-      <div className="booking-page-wrapper">
-        <div className="booking">
+      <Navigation />
+      <div className="booking-page">
+        <div className="booking-content">
           {!showSummary ? (
-            <div className="countdown">
-              <h2>Confirming Booking in {countdown}...</h2>
+            <div className="booking-loader">
+              <h2>Confirming Booking in</h2>
+              <div className="countdown-number">{countdown}</div>
             </div>
           ) : (
             <div className="booking-summary">
@@ -97,13 +96,12 @@ const Booking = () => {
               <p><strong>Start Time:</strong> {startTime}</p>
               <p><strong>End Time:</strong> {endTime}</p>
               <p><strong>Total Price:</strong> PKR {totalPrice}</p>
-
               <button onClick={handlePayment}>Proceed to Payment</button>
             </div>
           )}
         </div>
       </div>
-
+      <Footer />
     </>
   );
 };
