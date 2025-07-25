@@ -18,7 +18,7 @@ const Bookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('https://parkify-backend-six.vercel.app/api/bookings/admin/bookings');
+      const res = await axios.get('https://backend-parkify.vercel.app/api/bookings/admin/bookings');
       const data = res.data;
 
       const preferredBookingMap = new Map();
