@@ -66,7 +66,7 @@ const Navigation = () => {
           </Nav>
 
           {/* Desktop User/Login */}
-          {user ? (
+          {user && user.role !== "admin" ? (
             <Nav className="d-none d-lg-flex">
               <NavDropdown
                 title={
@@ -102,7 +102,7 @@ const Navigation = () => {
 
           {/* Mobile User/Login */}
           <div className="d-lg-none text-center mt-3 w-100">
-            {user ? (
+            {user && user.role !== "admin" ? (
               <NavDropdown
                 title={
                   <span style={{
