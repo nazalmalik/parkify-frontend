@@ -5,10 +5,11 @@ export const createBooking = async (bookingData) => {
   return res.data;
 };
 
-export const initiateJazzCashPayment = async (bookingId) => {
-  const res = await axiosInstance.post('/bookings/jazzcash', { bookingId });
+export const createStripeSession = async (bookingId) => {
+  const res = await axiosInstance.post('/bookings/stripe', { bookingId });
   return res.data;
 };
+
 
 export const markAsPaid = async (bookingId) => {
   const res = await axiosInstance.post('/bookings/paid', { bookingId });
