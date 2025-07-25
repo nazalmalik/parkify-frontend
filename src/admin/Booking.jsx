@@ -62,7 +62,7 @@ const Bookings = () => {
 
   const handleApprove = async (bookingId) => {
     try {
-      await axios.post(`https://parkify-backend-six.vercel.app/api/bookings/${bookingId}/approve`);
+      await axios.post(`https://backend-parkify.vercel.app/api/bookings/${bookingId}/approve`);
       toast.success('✅ Booking approved!');
       fetchBookings();
     } catch (error) {
@@ -76,7 +76,7 @@ const Bookings = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`https://parkify-backend-six.vercel.app/api/bookings/admin/bookings/${bookingId}`);
+      await axios.delete(`https://backend-parkify.vercel.app/api/bookings/admin/bookings/${bookingId}`);
       toast.warn('🗑️ Booking deleted');
       fetchBookings();
     } catch (error) {
