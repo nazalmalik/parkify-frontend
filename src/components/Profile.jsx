@@ -13,10 +13,10 @@ const Profile = () => {
       try {
         const headers = { Authorization: `Bearer ${token}` };
 
-        const userRes = await axios.get("https://backend-parkify.vercel.app/api/auth/profile", { headers });
+        const userRes = await axios.get("http://localhost:5000/api/auth/profile", { headers });
         setUser(userRes.data);
 
-        const bookingsRes = await axios.get("https://backend-parkify.vercel.app/api/bookings/my-bookings", { headers });
+        const bookingsRes = await axios.get("http://localhost:5000/api/bookings/my-bookings", { headers });
         setBookings(bookingsRes.data);
       } catch (error) {
         console.error("Error fetching profile or bookings:", error);

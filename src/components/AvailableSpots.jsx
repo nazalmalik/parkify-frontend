@@ -45,7 +45,7 @@ const AvailableSpots = ({ vehicleType }) => {
     <div>
       <div style={gridStyle}>
         {spots.map((spot) => {
-          const pricePerHour = spot.vehicleType === 'car' ? 20 : 10;
+          const pricePerHour = spot.vehicleType === 'car' ? 90 : 50;
           return (
             <SpotCard
               key={spot._id}

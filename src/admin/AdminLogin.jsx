@@ -15,7 +15,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://backend-parkify.vercel.app/api/admin/login', {
+      const response = await axios.post('http://localhost:5000/api/admin/login', {
         username: username.trim(),
         password: password.trim(),
       });

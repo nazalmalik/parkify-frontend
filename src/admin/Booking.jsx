@@ -18,7 +18,7 @@ const Bookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('https://backend-parkify.vercel.app/api/bookings/admin/bookings');
+      const res = await axios.get('http://localhost:5000/api/bookings/admin/bookings');
       const data = res.data;
 
       const preferredBookingMap = new Map();
@@ -62,7 +62,7 @@ const Bookings = () => {
 
   const handleApprove = async (bookingId) => {
     try {
-      await axios.post(`https://backend-parkify.vercel.app/api/bookings/${bookingId}/approve`);
+      await axios.post(`http://localhost:5000/api/bookings/${bookingId}/approve`);
       toast.success('✅ Booking approved!');
       fetchBookings();
     } catch (error) {
@@ -76,7 +76,7 @@ const Bookings = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`https://backend-parkify.vercel.app/api/bookings/admin/bookings/${bookingId}`);
+      await axios.delete(`http://localhost:5000/api/bookings/admin/bookings/${bookingId}`);
       toast.warn('🗑️ Booking deleted');
       fetchBookings();
     } catch (error) {
@@ -95,8 +95,8 @@ const Bookings = () => {
   };
 
   const getRateByVehicleType = (type) => {
-    if (type === 'bike') return 10;
-    if (type === 'car') return 20;
+    if (type === 'bike') return 50;
+    if (type === 'car') return 90;
     return 0;
   };
 

@@ -1,0 +1,87 @@
+/* admin/AdminMessages.css */
+
+:root {
+  --primary-color: #ffc107;
+  --text-color: #2c2c2c;
+  --bg-color: #fffbe6;
+  --card-bg: #ffffff;
+  --light-gray: #f9f9f9;
+  --gray: #6c757d;
+}
+
+.admin-messages-container {
+  flex: 1;
+  margin-left: 260px; /* to avoid being hidden behind sidebar */
+  padding: 40px 30px;
+  background: var(--bg-color);
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.admin-messages-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  border-bottom: 3px solid var(--primary-color);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message-card {
+  background-color: var(--card-bg);
+  border-left: 5px solid var(--primary-color);
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.message-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.message-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.message-card p {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.timestamp {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--gray);
+  text-align: right;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-messages-container {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .message-card {
+    padding: 15px;
+  }
+
+  .admin-messages-container h2 {
+    font-size: 1.5rem;
+  }
+}

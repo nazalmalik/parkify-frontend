@@ -31,28 +31,33 @@ const Booking = () => {
       return;
     }
 
-    const submitBooking = async () => {
-      try {
-        const res = await createBooking({
-          userId,
-          spotId,
-          vehicleType,
-          licensePlate,
-          bookingDate,
-          startTime,
-          endTime,
-        });
-
-        setBookingId(res.bookingId);
-        setTotalPrice(res.totalPrice);
-      } catch (err) {
-        console.error('Booking failed:', err);
-        alert('Booking failed. Please try again.');
-        navigate('/');
-      } finally {
-        setLoading(false);
-      }
+const submitBooking = async () => {
+  try {
+    const payload = {
+      userId,
+      spotId,
+      vehicleType,
+      licensePlate,
+      bookingDate,
+      startTime,
+      endTime,
     };
+
+    console.log('🟡 Booking Payload:', payload); // Log all values
+
+    const res = await createBooking(payload);
+    setBookingId(res.bookingId);
+    setTotalPrice(res.totalPrice);
+  } catch (err) {
+    console.error('🔴 Booking failed:', err.response?.data || err.message);
+    alert(err.response?.data?.message || 'Booking failed. Please try again.');
+    navigate('/');
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
     submitBooking();
   }, [userId, spotId, vehicleType, licensePlate, bookingDate, startTime, endTime, navigate]);
@@ -68,10 +73,9 @@ const Booking = () => {
       const { sessionUrl } = await createStripeSession(bookingId);
       window.location.href = sessionUrl;
     } catch (err) {
-      console.error('Stripe session error:', err);
-      alert('Stripe payment session could not be created. Please try again later.');
+      alert('Stripe session failed.');
     }
-  };
+  }; 
 
   return (
     <div className="booking-page">

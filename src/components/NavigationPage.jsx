@@ -5,8 +5,7 @@ import NavigationMap from './NavigationMap';
 import { coordinatesToPathD } from '../utils/svgHelpers';
 import axiosInstance from '../api/axiosInstance';
 import './NavigationPage.css';
-import Navigation from './Navbar.jsx';
-import Footer from './Footer.jsx';
+
 
 const NavigationPage = () => {
   const { bookingId } = useParams();
@@ -103,4 +102,4 @@ const NavigationPage = () => {
   );
 };
 
-export default NavigationPage;    
+export default NavigationPage;     

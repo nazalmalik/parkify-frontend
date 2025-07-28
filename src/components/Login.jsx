@@ -10,6 +10,7 @@ const AuthPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // -------------------- STATES --------------------
   const [isLogin, setIsLogin] = useState(true);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
 
@@ -27,13 +28,15 @@ const AuthPage = () => {
     password: "",
   });
 
+  // -------------------- USE EFFECT --------------------
   useEffect(() => {
     if (location.state?.message) {
       toast[location.state.type || "success"](location.state.message);
     }
   }, [location]);
 
-  // Toggle User Login / Register
+  // -------------------- FORM HANDLERS --------------------
+
   const toggleForm = () => {
     setIsLogin(!isLogin);
     setFormData({
@@ -46,17 +49,15 @@ const AuthPage = () => {
     });
   };
 
-  // Handle User Form Changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle Admin Form Changes
   const handleAdminChange = (e) => {
     setAdminData({ ...adminData, [e.target.name]: e.target.value });
   };
 
-  // Handle User Login/Register
+  // -------------------- USER SUBMIT --------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,8 +68,7 @@ const AuthPage = () => {
 
     try {
       if (isLogin) {
-        // USER LOGIN
-        const res = await axios.post("https://backend-parkify.vercel.app/api/auth/login", {
+        const res = await axios.post("http://localhost:5000/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
@@ -79,24 +79,12 @@ const AuthPage = () => {
           localStorage.setItem("token", token);
           localStorage.setItem("User", JSON.stringify(user));
           toast.success("Login successful!");
-
-          setTimeout(() => {
-            navigate("/");
-          }, 1000);
+          setTimeout(() => navigate("/"), 1000);
         } else {
           toast.error("Login failed. Invalid response.");
         }
       } else {
-        // USER REGISTER
-        await axios.post("https://backend-parkify.vercel.app/api/auth/register", {
-          name: formData.name,
-          phoneNumber: formData.phoneNumber,
-          vehicleNumber: formData.vehicleNumber,
-          email: formData.email,
-          password: formData.password,
-          confirmPassword: formData.confirmPassword,
-        });
-
+        await axios.post("http://localhost:5000/api/auth/register", formData);
         toast.success("Registered successfully!");
         setIsLogin(true);
       }
@@ -115,36 +103,37 @@ const AuthPage = () => {
     }
   };
 
-  // ✅ Handle Admin Login
-  const handleAdminLogin = async (e) => {
-    e.preventDefault();
+// -------------------- ADMIN SUBMIT --------------------
+const handleAdminLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await axios.post('https://backend-parkify.vercel.app/api/admin/login', {
-        username: adminData.username.trim(),
-        password: adminData.password.trim(),
-      });
+  try {
+    const response = await axios.post("http://localhost:5000/api/auth/admin/login", {
+      username: adminData.username.trim(),
+      password: adminData.password.trim(),
+    });
 
-      if (response.data.success) {
-        localStorage.setItem("User", JSON.stringify({ role: "admin", name: "Admin" }));
-        toast.success("Admin logged in successfully!");
-        setTimeout(() => {
-          navigate("/admin/dashboard");
-        }, 1000);
-      } else {
-        toast.error("Invalid admin credentials");
-      }
-    } catch (error) {
-      const message = error.response?.data?.message || "Server error";
-      toast.error(message);
+    if (response.status === 200) {
+      localStorage.setItem("User", JSON.stringify({ role: "admin", name: "Admin" }));
+      toast.success("Admin logged in successfully!");
+      setTimeout(() => navigate("/admin/dashboard"), 1000);
+    } else {
+      toast.error("Invalid admin credentials");
     }
-  };
+  } catch (error) {
+    const message = error.response?.data?.message || "Server error";
+    toast.error(message);
+  }
+};
 
+
+  // -------------------- JSX RENDER --------------------
   return (
     <div className="login-wrapper">
       <ToastContainer />
 
       <div className="login-card">
+        {/* --------- HEADER --------- */}
         <div className="login-header">
           <h2>
             {showAdminLogin
@@ -162,6 +151,7 @@ const AuthPage = () => {
           </p>
         </div>
 
+        {/* --------- USER FORM --------- */}
         {!showAdminLogin ? (
           <form onSubmit={handleSubmit} className="login-form">
             {!isLogin && (
@@ -201,6 +191,7 @@ const AuthPage = () => {
                 </div>
               </>
             )}
+
             <div className="input-icon-wrapper">
               <FaEnvelope className="input-icon" />
               <input
@@ -212,6 +203,7 @@ const AuthPage = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className="input-icon-wrapper">
               <FaLock className="input-icon" />
               <input
@@ -223,6 +215,7 @@ const AuthPage = () => {
                 onChange={handleChange}
               />
             </div>
+
             {!isLogin && (
               <div className="input-icon-wrapper">
                 <FaLock className="input-icon" />
@@ -236,6 +229,7 @@ const AuthPage = () => {
                 />
               </div>
             )}
+
             {!isLogin && (
               <label className="checkbox-container">
                 <input type="checkbox" required />
@@ -243,11 +237,32 @@ const AuthPage = () => {
                 I agree to the Terms & Conditions
               </label>
             )}
+
             <button type="submit" className="login-button">
               {isLogin ? "Login" : "Sign Up"}
             </button>
+
+            {/* Google Login
+            <a href="http://localhost:5000/api/auth/google">
+              <button type="button" className="google-login-btn">
+                Continue with Google
+              </button>
+            </a> */}
+
+            {/* Forgot Password */}
+            {isLogin && (
+              <p className="switch-auth">
+                <span
+                  onClick={() => navigate("/forgot-password")}
+                  style={{ cursor: "pointer", color: "#007bff" }}
+                >
+                  Forgot Password?
+                </span>
+              </p>
+            )}
           </form>
         ) : (
+          // --------- ADMIN FORM ---------
           <>
             <form onSubmit={handleAdminLogin} className="login-form">
               <div className="input-icon-wrapper">
@@ -261,6 +276,7 @@ const AuthPage = () => {
                   onChange={handleAdminChange}
                 />
               </div>
+
               <div className="input-icon-wrapper">
                 <FaLock className="input-icon" />
                 <input
@@ -272,6 +288,7 @@ const AuthPage = () => {
                   onChange={handleAdminChange}
                 />
               </div>
+
               <button
                 type="submit"
                 className="login-button"
@@ -280,23 +297,23 @@ const AuthPage = () => {
                 Login as Admin
               </button>
             </form>
+
             <p className="switch-auth">
-              Not an admin?{" "}
-              <span onClick={() => setShowAdminLogin(false)}>Go back</span>
+              Not an admin? <span onClick={() => setShowAdminLogin(false)}>Go back</span>
             </p>
           </>
         )}
 
+        {/* --------- SWITCH FORM LINKS --------- */}
         {!showAdminLogin && (
           <>
             <p className="switch-auth">
-              {isLogin
-                ? "Don't have an account?"
-                : "Already have an account?"}{" "}
+              {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
               <span onClick={toggleForm}>
                 {isLogin ? "Sign Up" : "Login"}
               </span>
             </p>
+
             <p className="switch-auth">
               Login as Admin?{" "}
               <span onClick={() => setShowAdminLogin(true)}>Click here</span>

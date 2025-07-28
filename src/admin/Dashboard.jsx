@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Dashboard.css';
+import './dashboard.css';
 import {
   FaClipboardList,
   FaUsers,
@@ -26,13 +26,19 @@ const Dashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('https://backend-parkify.vercel.app/api/bookings/admin/bookings');
-      setBookings(res.data);
-      calculateStats(res.data);
+      const res = await axios.get('http://localhost:5000/api/bookings/admin/bookings');
+      const allBookings = res.data;
+
+      // Filter only paid bookings
+      const paidBookings = allBookings.filter(booking => booking.isPaid);
+
+      setBookings(paidBookings);
+      calculateStats(paidBookings); // Pass only paid bookings to stats
     } catch (err) {
       console.error('Failed to fetch bookings:', err);
     }
   };
+
 
   const getRateByVehicleType = (type) => {
     if (type === 'bike') return 10;
@@ -134,7 +140,7 @@ const Dashboard = () => {
             <FaMotorcycle className="stat-icon" />
             <div>
               <p className="stat-label">Total Bike Slots</p>
-              <h3 className="stat-value">24</h3>
+              <h3 className="stat-value">30</h3>
             </div>
           </div>
 

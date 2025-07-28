@@ -10,7 +10,6 @@ export const createStripeSession = async (bookingId) => {
   return res.data;
 };
 
-
 export const markAsPaid = async (bookingId) => {
   const res = await axiosInstance.post('/bookings/paid', { bookingId });
   return res.data;

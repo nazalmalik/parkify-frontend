@@ -17,17 +17,25 @@ const Contactus = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Show toast
-    toast.success("Message Sent! 🚀");
-    // Clear form
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+
+    try {
+      await fetch("http://localhost:5000/api/contact/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      toast.success("Message Sent! 🚀");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error("Failed to send message.");
+    }
   };
+
 
   return (
     <motion.section

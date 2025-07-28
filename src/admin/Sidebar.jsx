@@ -48,6 +48,14 @@ const Sidebar = () => {
             <FaListAlt /> All Bookings
           </Link>
         </li>
+        <li>
+          <Link 
+            to="/admin/messages" 
+            className={`sidebar-link ${location.pathname === "/admin/messages" ? "active" : ""}`}
+          >
+            <FaInfoCircle /> User Messages
+          </Link>
+        </li>
       </ul>
 
       <div className="sidebar-footer">

@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navigation from './components/Navbar';
 import Footer from './components/Footer';
+import GoogleSuccess from "./pages/GoogleSuccess"; // adjust path if needed
 // Pages
 import Home from './pages/Home';
 import Howitworks from './pages/Howitworks';
@@ -21,15 +22,19 @@ import BookingPage from './pages/booking/Booking';
 import PaymentSuccess from './components/PaymentSuccess';
 import NavigationPage from './components/NavigationPage';
 import MyProfile from './pages/MyProfile';
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 // Admin pages
 import Dashboard from './admin/Dashboard';
 import Bookings from './admin/Booking';
+import AdminMessages from './admin/AdminMessages';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
+    const isAdminRoute = location.pathname.startsWith('/admin');
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -54,7 +59,7 @@ const App = () => {
       />
 
       <ScrollToTop />
-  <Navigation />
+    {!isAdminRoute && <Navigation />}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
 
@@ -72,14 +77,18 @@ const App = () => {
           <Route path="/navigate/:bookingId" element={<NavigationPage />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/profile" element={<MyProfile />} />
-
-          {/* Admin Routes */}
+          <Route path="/google-success" element={<GoogleSuccess />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />                                                                                                                                                                       
+         
+{/* Admin Routes */}
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/bookings" element={<Bookings />} />
-
+          <Route path="/admin/messages" element={<AdminMessages />} />
         </Routes>
       </AnimatePresence>
-       <Footer />
+        {!isAdminRoute && <Footer />}
+        
     </>
   );
 };

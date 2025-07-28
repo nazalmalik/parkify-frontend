@@ -20,15 +20,16 @@ const steps = [
     title: "Get Confirmation",
     text: "Receive a unique QR code for seamless access.",
   },
-  {
-    icon: <FaMapMarkedAlt />,
-    title: "Navigate Easily",
-    text: "Use built-in navigation to reach your spot effortlessly.",
-  },
+  
   {
     icon: <FaQrcode />,
     title: "Scan & Enter",
     text: "Scan the QR code at the entrance for quick access.",
+  },
+  {
+    icon: <FaMapMarkedAlt />,
+    title: "Navigate Easily",
+    text: "Use built-in navigation to reach your spot effortlessly.",
   },
   {
     icon: <FaCar />,
