@@ -8,19 +8,19 @@ import "./PricingPlans.css";
 const parkingRates = [
   {
     name: "Bike",
-    price: "Rs. 50/day",
+    price: "Rs.50/hr",
     icon: <FaMotorcycle size={50} color="#ffc107" />,
     features: ["Bike Stand", "24/7 Security", "Secure Locking"],
   },
   {
     name: "Car",
-    price: "Rs. 200/day",
+    price: "Rs. 200/hour",
     icon: <FaCarSide size={50} color="#ffc107" />,
     features: ["Single Spot", "24/7 Access", "Basic Security"],
   },
   {
     name: "Loader",
-    price: "Rs. 500/day",
+    price: "Rs. 500/hr",
     icon: <FaTruckPickup size={50} color="#ffc107" />,
     features: ["Spacious Spot", "High Security", "Priority Access"],
   },

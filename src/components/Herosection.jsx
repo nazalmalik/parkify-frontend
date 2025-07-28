@@ -169,7 +169,7 @@ const Herosection = () => {
                   <div className="card-icon">Rs</div>
                   <div className="card-text">
                     <p className="card-title">Average Savings</p>
-                    <p className="card-value">Rs.500/month</p>
+                    <p className="card-value">Rs.2000/month</p>
                   </div>
                 </motion.div>
               </motion.div>
