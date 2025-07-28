@@ -8,8 +8,17 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://parkify-backend-six.vercel.app/api/auth/forgot-password", { email });
-      toast.success(res.data.message);
+      const res = await axios.post(
+        "https://parkify-backend-six.vercel.app/api/auth/forgot-password",
+        { email }
+      );
+
+      // Custom toast message
+      toast.success("Email has been sent");
+
+      // Optional: Show backend message too
+      // toast.info(res.data.message);
+
       setEmail("");
     } catch (err) {
       toast.error(err.response?.data?.message || "Something went wrong");
