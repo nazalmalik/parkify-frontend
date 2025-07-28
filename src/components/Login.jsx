@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
   }
 
   if (!passwordRegex.test(formData.password)) {
-    toast.error("❌ Invalid Password. Must be 8+ characters, include 1 capital letter & 1 special character.");
+    toast.error("❌ Invalid Password.");
     return;
   }
 
@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
   }
 
   if (!isLogin && !phoneRegex.test(formData.phoneNumber)) {
-    toast.error("❌ Invalid Pakistani phone number. Format: 03XXXXXXXXX");
+    toast.error("❌ Invalid Pakistani phone number. Format: 11-didgit");
     return;
   }
 
