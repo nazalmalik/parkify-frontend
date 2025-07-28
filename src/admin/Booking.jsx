@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showSidebar, setShowSidebar] = useState(window.innerWidth > 768);
   const bookingsPerPage = 30;
   const prevBookingIds = useRef(new Set());
 
@@ -15,15 +14,6 @@ const Bookings = () => {
     fetchBookings();
     const interval = setInterval(fetchBookings, 5000);
     return () => clearInterval(interval);
-  }, []);
-
-  // Hide sidebar on small screens
-  useEffect(() => {
-    const handleResize = () => {
-      setShowSidebar(window.innerWidth > 768);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const fetchBookings = async () => {
@@ -53,6 +43,7 @@ const Bookings = () => {
       );
 
       const paidBookings = uniqueBookings.filter((b) => b.isPaid);
+
       const newIds = new Set(paidBookings.map((b) => b.bookingId));
       const newBookingsCount = [...newIds].filter((id) => !prevBookingIds.current.has(id)).length;
 
@@ -61,6 +52,7 @@ const Bookings = () => {
       }
 
       prevBookingIds.current = newIds;
+
       setBookings(paidBookings);
     } catch (error) {
       toast.error('Error fetching bookings');
@@ -119,9 +111,15 @@ const Bookings = () => {
 
   return (
     <div className="bookings-page">
-      {showSidebar && <Sidebar />}
+      <Sidebar />
+      <div className="bookings-content">
+        <button
+          className="back-button"
+          onClick={() => window.location.href = '/admin/dashboard'}
+        >
+          ← Back to Dashboard
+        </button>
 
-      <div className={`bookings-content ${!showSidebar ? 'full-width' : ''}`}>
         <h2>📑 Paid Bookings</h2>
 
         {bookings.length === 0 ? (
@@ -163,10 +161,22 @@ const Bookings = () => {
                         <td>{booking.isPaid ? 'Yes' : 'No'}</td>
                         <td>{booking.qrScanned ? '✅' : '❌'}</td>
                         <td>
-                          {booking.isPaid && !booking.qrScanned && (
-                            <button className="action-btn" onClick={() => handleApprove(booking.bookingId)}>Approve</button>
-                          )}
-                          <button className="action-btn delete-btn" onClick={() => handleDelete(booking.bookingId)}>Delete</button>
+                          <button
+                            className="action-btn"
+                            onClick={() => handleApprove(booking.bookingId)}
+                            style={{
+                              backgroundColor: booking.qrScanned ? '#6c757d' : '#28a745',
+                            }}
+                          >
+                            {booking.qrScanned ? 'Approved' : 'Approve'}
+                          </button>
+
+                          <button
+                            className="action-btn delete-btn"
+                            onClick={() => handleDelete(booking.bookingId)}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     );
