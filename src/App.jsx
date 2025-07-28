@@ -49,7 +49,7 @@ const App = () => {
       {/* ✅ ToastContainer outside AnimatePresence to stay mounted */}
       <ToastContainer
         position="top-right"
-        autoClose={1200}
+        autoClose={400}
         newestOnTop
         closeOnClick
         draggable

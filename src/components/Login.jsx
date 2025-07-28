@@ -76,7 +76,7 @@ const AuthPage = () => {
     }
 
     if (!isLogin && !phoneRegex.test(formData.phoneNumber)) {
-      toast.error("❌ Invalid Pakistani phone number. Format: 03XXXXXXXXX");
+      toast.error("❌ Invalid phone number.");
       return;
     }
 
