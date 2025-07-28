@@ -58,32 +58,35 @@ const AuthPage = () => {
   };
 
   // -------------------- USER SUBMIT --------------------
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Email format validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+  const phoneRegex = /^03[0-9]{9}$/; // Pakistani standard mobile: starts with 03, 11 digits
+
   if (!emailRegex.test(formData.email)) {
     toast.error("❌ Invalid email format. Example: username@gmail.com");
     return;
   }
 
-  // Password strength validation
-  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
   if (!passwordRegex.test(formData.password)) {
-    toast.error("❌ Password must be 8+ characters, include 1 capital letter & 1 special character.");
+    toast.error("❌ Invalid Password. Must be 8+ characters, include 1 capital letter & 1 special character.");
     return;
   }
 
-  // Password match check (only for signup)
   if (!isLogin && formData.password !== formData.confirmPassword) {
     toast.error("❌ Passwords do not match.");
     return;
   }
 
-  // Terms & Conditions checkbox validation (only for signup)
+  if (!isLogin && !phoneRegex.test(formData.phoneNumber)) {
+    toast.error("❌ Invalid Pakistani phone number. Format: 03XXXXXXXXX");
+    return;
+  }
+
   const termsCheckbox = document.getElementById("terms-checkbox");
-  if (!isLogin && !termsCheckbox.checked) {
+  if (!isLogin && !termsCheckbox?.checked) {
     toast.error("❌ You must agree to the Terms & Conditions to register.");
     return;
   }
@@ -111,7 +114,6 @@ const AuthPage = () => {
       setIsLogin(true);
     }
 
-    // Reset form
     setFormData({
       name: "",
       phoneNumber: "",
@@ -125,6 +127,7 @@ const AuthPage = () => {
     toast.error("❌ Something went wrong. Please try again.");
   }
 };
+
 
 
 // -------------------- ADMIN SUBMIT --------------------
@@ -192,16 +195,18 @@ const handleAdminLogin = async (e) => {
                   />
                 </div>
                 <div className="input-icon-wrapper">
-                  <FaPhone className="input-icon" />
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    placeholder="+92 321 4975489"
-                    required
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                  />
-                </div>
+  <FaPhone className="input-icon" />
+  <input
+    type="tel"
+    name="phoneNumber"
+    placeholder="03XXXXXXXXX"
+    required
+    value={formData.phoneNumber}
+    onChange={handleChange}
+    maxLength={11}
+  />
+</div>
+
                 <div className="input-icon-wrapper">
                   <FaCar className="input-icon" />
                   <input
@@ -229,16 +234,23 @@ const handleAdminLogin = async (e) => {
             </div>
 
             <div className="input-icon-wrapper">
-              <FaLock className="input-icon" />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
+  <FaLock className="input-icon" />
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    required
+    value={formData.password}
+    onChange={handleChange}
+  />
+</div>
+
+{/* Password Requirements */}
+{!isLogin && (
+  <span style={{ color: "#888", fontSize: "0.85rem", marginTop: "-10px", marginBottom: "10px", display: "block" }}>
+    ➤ Must be 8+ characters, include 1 capital letter and 1 special character.
+  </span>
+)}
 
             {!isLogin && (
               <div className="input-icon-wrapper">
