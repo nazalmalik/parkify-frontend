@@ -3,7 +3,7 @@ import { fetchAvailableSpots } from '../api/spot.js';
 import SpotCard from './SpotCard.jsx';
 import BookingModal from './BookingModal.jsx';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; // ✅ Toastify import
 
 const AvailableSpots = ({ vehicleType }) => {
   const user = JSON.parse(localStorage.getItem("User"));
@@ -13,29 +13,21 @@ const AvailableSpots = ({ vehicleType }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ Refactored for reuse
-  const loadSpots = async () => {
-    try {
-      setLoading(true);
-      const data = await fetchAvailableSpots(vehicleType);
-      setSpots(data);
-    } catch (err) {
-      toast.error('Error fetching spots');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const loadSpots = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchAvailableSpots(vehicleType);
+        setSpots(data);
+      } catch (err) {
+        toast.error('Error fetching spots'); // ✅ Show error as toast
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (vehicleType) {
-      loadSpots(); // fetch on initial load
-
-      // ✅ Set interval for polling every 30s
-      const interval = setInterval(() => {
-        loadSpots();
-      }, 30000);
-
-      return () => clearInterval(interval); // ✅ Cleanup
+      loadSpots();
     }
   }, [vehicleType]);
 
@@ -69,6 +61,13 @@ const AvailableSpots = ({ vehicleType }) => {
           spot={selectedSpot}
           onClose={() => setSelectedSpot(null)}
           onConfirm={(details) => {
+            console.log("Navigating to booking with:", {
+              userId,
+              spotId: selectedSpot.spotId,
+              vehicleType,
+              ...details,
+            });
+
             navigate('/booking', {
               state: {
                 userId,
