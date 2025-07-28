@@ -13,7 +13,7 @@ const AdminMessages = () => {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contact/admin/messages");
+      const res = await axios.get("https://parkify-backend-six.vercel.app/api/contact/admin/messages");
       setMessages(res.data);
     } catch (error) {
       console.error("Error fetching messages:", error);

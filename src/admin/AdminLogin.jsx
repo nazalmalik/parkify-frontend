@@ -1,5 +1,5 @@
 // src/admin/AdminLogin.jsx
-import React, { useState } from 'react';
+import React { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './admin.css';
 import { FaUserShield } from 'react-icons/fa';
@@ -15,7 +15,7 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', {
+      const response = await axios.post('https://parkify-backend-six.vercel.app/api/admin/login', {
         username: username.trim(),
         password: password.trim(),
       });

@@ -26,7 +26,7 @@ const GoogleSuccess = () => {
     const bookForGoogleUser = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/bookings/create",
+          "https://parkify-backend-six.vercel.app/api/bookings/create",
           {
             userId: user.id,
             spotId: "google-default-spot",         // Must exist in DB or be handled

@@ -21,7 +21,7 @@ const Contactus = () => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:5000/api/contact/send", {
+      await fetch("https://parkify-backend-six.vercel.app/api/contact/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

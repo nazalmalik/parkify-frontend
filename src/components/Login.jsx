@@ -68,7 +68,7 @@ const AuthPage = () => {
 
     try {
       if (isLogin) {
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post("https://parkify-backend-six.vercel.app/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
@@ -84,7 +84,7 @@ const AuthPage = () => {
           toast.error("Login failed. Invalid response.");
         }
       } else {
-        await axios.post("http://localhost:5000/api/auth/register", formData);
+        await axios.post("https://parkify-backend-six.vercel.app/api/auth/register", formData);
         toast.success("Registered successfully!");
         setIsLogin(true);
       }
@@ -108,7 +108,7 @@ const handleAdminLogin = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await axios.post("http://localhost:5000/api/auth/admin/login", {
+    const response = await axios.post("https://parkify-backend-six.vercel.app/api/auth/admin/login", {
       username: adminData.username.trim(),
       password: adminData.password.trim(),
     });
@@ -243,7 +243,7 @@ const handleAdminLogin = async (e) => {
             </button>
 
             {/* Google Login
-            <a href="http://localhost:5000/api/auth/google">
+            <a href="https://parkify-backend-six.vercel.app/api/auth/google">
               <button type="button" className="google-login-btn">
                 Continue with Google
               </button>

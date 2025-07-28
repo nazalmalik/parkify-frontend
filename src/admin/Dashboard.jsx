@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './dashboard.css';
+import './Dashboard.css';
 import {
   FaClipboardList,
   FaUsers,
@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/bookings/admin/bookings');
+      const res = await axios.get('https://parkify-backend-six.vercel.app/api/bookings/admin/bookings');
       const allBookings = res.data;
 
       // Filter only paid bookings
