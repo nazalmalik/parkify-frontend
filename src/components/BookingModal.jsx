@@ -29,7 +29,7 @@ const BookingModal = ({ spot, onConfirm, onClose }) => {
       <div className="modal-box">
         <h2>Book Spot {spot.spotId}</h2>
 
-        <label>License Plate:</label>
+        <label>Vehicle No:</label>
         <input
           value={licensePlate}
           onChange={(e) => setLicensePlate(e.target.value)}

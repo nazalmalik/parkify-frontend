@@ -24,7 +24,6 @@ const Bookings = () => {
       const preferredBookingMap = new Map();
       data.forEach((booking) => {
         const existing = preferredBookingMap.get(booking.bookingId);
-
         if (!existing) {
           preferredBookingMap.set(booking.bookingId, booking);
         } else if (!existing.isPaid && booking.isPaid) {
@@ -43,7 +42,6 @@ const Bookings = () => {
       );
 
       const paidBookings = uniqueBookings.filter((b) => b.isPaid);
-
       const newIds = new Set(paidBookings.map((b) => b.bookingId));
       const newBookingsCount = [...newIds].filter((id) => !prevBookingIds.current.has(id)).length;
 
@@ -52,7 +50,6 @@ const Bookings = () => {
       }
 
       prevBookingIds.current = newIds;
-
       setBookings(paidBookings);
     } catch (error) {
       toast.error('Error fetching bookings');
@@ -112,6 +109,7 @@ const Bookings = () => {
   return (
     <div className="bookings-page">
       <Sidebar />
+
       <div className="bookings-content">
         <button
           className="back-button"
