@@ -119,7 +119,7 @@ const AuthPage = () => {
       });
     } catch (error) {
       console.error("Auth error:", error.response?.data || error.message);
-      toast.error("❌ Something went wrong. Please check your data and try again.");
+      toast.error("❌ Invalid Credientials ");
     }
   };
 
