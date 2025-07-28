@@ -125,7 +125,7 @@ body.dark-mode {
 }
 
 
-.green-dot {
+/* .green-dot {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -140,4 +140,4 @@ body.dark-mode {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.4); opacity: 0.6; }
   100% { transform: scale(1); opacity: 1; }
-}
+} */

@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('https://parkify-backend-six.vercel.app/api/bookings/admin/bookings');
+      const res = await axios.get('https://parkify-frontend-rouge.vercel.app/api/bookings/admin/bookings');
       const allBookings = res.data;
 
       // Filter only paid bookings
