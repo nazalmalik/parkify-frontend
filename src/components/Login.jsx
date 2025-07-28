@@ -61,28 +61,28 @@ const AuthPage = () => {
     const phoneRegex = /^03[0-9]{9}$/;
 
     if (!emailRegex.test(formData.email)) {
-      toast.error("❌ Invalid email format.");
+      toast.error("Invalid email format.");
       return;
     }
 
     if (!passwordRegex.test(formData.password)) {
-      toast.error("❌ Invalid Password.");
+      toast.error("Invalid Password.");
       return;
     }
 
     if (!isLogin && formData.password !== formData.confirmPassword) {
-      toast.error("❌ Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
     if (!isLogin && !phoneRegex.test(formData.phoneNumber)) {
-      toast.error("❌ Invalid phone number.");
+      toast.error("Invalid phone number.");
       return;
     }
 
     const termsCheckbox = document.getElementById("terms-checkbox");
     if (!isLogin && !termsCheckbox?.checked) {
-      toast.error("❌ You must agree to the Terms & Conditions to register.");
+      toast.error("You must agree to the Terms & Conditions to register.");
       return;
     }
 
@@ -98,14 +98,14 @@ const AuthPage = () => {
         if (token && user) {
           localStorage.setItem("token", token);
           localStorage.setItem("User", JSON.stringify(user));
-          toast.success("✅ Login successful!");
+          toast.success("Login successful!");
           setTimeout(() => navigate("/"), 1000);
         } else {
-          toast.error("❌ Login failed. Try again.");
+          toast.error("Login failed. Try again.");
         }
       } else {
         await axios.post("https://parkify-backend-six.vercel.app/api/auth/register", formData);
-        toast.success("✅ Registered successfully!");
+        toast.success("Registered successfully!");
         setIsLogin(true);
       }
 
@@ -119,7 +119,7 @@ const AuthPage = () => {
       });
     } catch (error) {
       console.error("Auth error:", error.response?.data || error.message);
-      toast.error("❌ Invalid Credientials ");
+      toast.error("Invalid Credientials ");
     }
   };
 

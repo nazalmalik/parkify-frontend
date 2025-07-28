@@ -43,13 +43,13 @@ const submitBooking = async () => {
       endTime,
     };
 
-    console.log('🟡 Booking Payload:', payload); // Log all values
+    console.log('Booking Payload:', payload); // Log all values
 
     const res = await createBooking(payload);
     setBookingId(res.bookingId);
     setTotalPrice(res.totalPrice);
   } catch (err) {
-    console.error('🔴 Booking failed:', err.response?.data || err.message);
+    console.error('Booking failed:', err.response?.data || err.message);
     alert(err.response?.data?.message || 'Booking failed. Please try again.');
     navigate('/');
   } finally {

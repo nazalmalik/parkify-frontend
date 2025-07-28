@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showSidebar, setShowSidebar] = useState(window.innerWidth > 768);
   const bookingsPerPage = 30;
   const prevBookingIds = useRef(new Set());
 
@@ -14,6 +15,15 @@ const Bookings = () => {
     fetchBookings();
     const interval = setInterval(fetchBookings, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Hide sidebar on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      setShowSidebar(window.innerWidth > 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const fetchBookings = async () => {
@@ -42,8 +52,7 @@ const Bookings = () => {
         (a, b) => new Date(b.createdAt || b._id) - new Date(a.createdAt || a._id)
       );
 
-      const paidBookings = uniqueBookings.filter((b) => b.isPaid); // ✅ only paid
-
+      const paidBookings = uniqueBookings.filter((b) => b.isPaid);
       const newIds = new Set(paidBookings.map((b) => b.bookingId));
       const newBookingsCount = [...newIds].filter((id) => !prevBookingIds.current.has(id)).length;
 
@@ -52,10 +61,9 @@ const Bookings = () => {
       }
 
       prevBookingIds.current = newIds;
-
-      setBookings(paidBookings); // ✅ set paid bookings only
+      setBookings(paidBookings);
     } catch (error) {
-      toast.error('❌ Error fetching bookings');
+      toast.error('Error fetching bookings');
       console.error('Error fetching bookings:', error);
     }
   };
@@ -66,7 +74,7 @@ const Bookings = () => {
       toast.success('✅ Booking approved!');
       fetchBookings();
     } catch (error) {
-      toast.error('❌ Failed to approve booking');
+      toast.error('Failed to approve booking');
       console.error('Approval error:', error);
     }
   };
@@ -80,7 +88,7 @@ const Bookings = () => {
       toast.warn('🗑️ Booking deleted');
       fetchBookings();
     } catch (error) {
-      toast.error('❌ Failed to delete booking');
+      toast.error('Failed to delete booking');
       console.error('Delete error:', error);
     }
   };
@@ -111,59 +119,60 @@ const Bookings = () => {
 
   return (
     <div className="bookings-page">
-      <Sidebar />
-      <div className="bookings-content">
+      {showSidebar && <Sidebar />}
+
+      <div className={`bookings-content ${!showSidebar ? 'full-width' : ''}`}>
         <h2>📑 Paid Bookings</h2>
 
         {bookings.length === 0 ? (
           <p>No paid bookings found.</p>
         ) : (
           <>
-           <div className="bookings-table-wrapper">
-            <table className="bookings-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>User ID</th>
-                  <th>Spot</th>
-                  <th>Vehicle No</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Rate</th>
-                  <th>Total Price</th>
-                  <th>Paid</th>
-                  <th>Approved</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentBookings.map((booking, idx) => {
-                  const rate = getRateByVehicleType(booking.vehicleType);
-                  const totalPrice = calculateTotalPrice(booking.startTime, booking.endTime, rate);
+            <div className="bookings-table-wrapper">
+              <table className="bookings-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>User ID</th>
+                    <th>Spot</th>
+                    <th>Vehicle No</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Rate</th>
+                    <th>Total Price</th>
+                    <th>Paid</th>
+                    <th>Approved</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentBookings.map((booking, idx) => {
+                    const rate = getRateByVehicleType(booking.vehicleType);
+                    const totalPrice = calculateTotalPrice(booking.startTime, booking.endTime, rate);
 
-                  return (
-                    <tr key={booking._id}>
-                      <td>{indexOfFirst + idx + 1}</td>
-                      <td>{booking.userId}</td>
-                      <td>{booking.spotId}</td>
-                      <td>{booking.licensePlate}</td>
-                      <td>{booking.bookingDate?.slice(0, 10)}</td>
-                      <td>{booking.startTime} - {booking.endTime}</td>
-                      <td>Rs.{rate}</td>
-                      <td>Rs.{totalPrice}</td>
-                      <td>{booking.isPaid ? 'Yes' : 'No'}</td>
-                      <td>{booking.qrScanned ? '✅' : '❌'}</td>
-                      <td>
-                        {booking.isPaid && !booking.qrScanned && (
-                          <button className="action-btn" onClick={() => handleApprove(booking.bookingId)}>Approve</button>
-                        )}
-                        <button className="action-btn delete-btn" onClick={() => handleDelete(booking.bookingId)}>Delete</button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                    return (
+                      <tr key={booking._id}>
+                        <td>{indexOfFirst + idx + 1}</td>
+                        <td>{booking.userId}</td>
+                        <td>{booking.spotId}</td>
+                        <td>{booking.licensePlate}</td>
+                        <td>{booking.bookingDate?.slice(0, 10)}</td>
+                        <td>{booking.startTime} - {booking.endTime}</td>
+                        <td>Rs.{rate}</td>
+                        <td>Rs.{totalPrice}</td>
+                        <td>{booking.isPaid ? 'Yes' : 'No'}</td>
+                        <td>{booking.qrScanned ? '✅' : '❌'}</td>
+                        <td>
+                          {booking.isPaid && !booking.qrScanned && (
+                            <button className="action-btn" onClick={() => handleApprove(booking.bookingId)}>Approve</button>
+                          )}
+                          <button className="action-btn delete-btn" onClick={() => handleDelete(booking.bookingId)}>Delete</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
 
             <div className="pagination-container">

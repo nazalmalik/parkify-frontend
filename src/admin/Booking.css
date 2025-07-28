@@ -162,6 +162,13 @@
   overflow-x: auto;
   width: 100%;
 }
+/* Full-width class when sidebar hidden */
+.bookings-content.full-width {
+  margin-left: 0 !important;
+  width: 100% !important;
+  padding: 20px;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
