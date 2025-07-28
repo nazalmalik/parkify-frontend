@@ -57,6 +57,13 @@ const PaymentSuccess = () => {
     return () => clearInterval(interval);
   }, [bookingId]);
 
+  // Auto navigate when QR scanned
+  useEffect(() => {
+    if (qrScanned) {
+      navigate(`/navigate/${bookingId}`);
+    }
+  }, [qrScanned, navigate, bookingId]);
+
   const {
     spotId,
     vehicleType,
@@ -98,11 +105,9 @@ const PaymentSuccess = () => {
           </div>
 
           {qrScanned ? (
-            <button className="start-navigation-btn" onClick={() => navigate(`/navigate/${bookingId}`)}>
-              🚗 Start Navigation
-            </button>
+            <p className="navigation-starting-message">🚗 Starting Navigation...</p>
           ) : (
-            <p className="waiting-message">⌛ Waiting for QR scan...</p>
+            <p className="waiting-message">⌛ Waiting for Approval from admin...</p>
           )}
         </div>
       </main>

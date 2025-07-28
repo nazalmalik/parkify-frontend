@@ -130,6 +130,20 @@
   box-shadow: 0 3px 12px rgba(255, 152, 0, 0.4);
 }
 
+/* New style for automatic navigation message */
+.navigation-starting-message {
+  margin: 2.5rem auto 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #28a745;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  animation: glowingPulse 1.6s infinite alternate;
+}
+
 /* Animations */
 @keyframes glowingPulse {
   0% {
