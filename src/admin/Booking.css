@@ -157,16 +157,47 @@
 .qr-close-btn:hover {
   background-color: #a71d2a;
 }
+/* Wrap table for horizontal scroll */
+.bookings-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .bookings-content {
     margin-left: 0;
     padding: 20px;
   }
 
+  .bookings-content h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
   .bookings-table th,
   .bookings-table td {
     padding: 10px;
     font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .pagination-container {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .pagination-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .action-btn,
+  .delete-btn {
+    margin-top: 4px;
+    width: 100%;
+    font-size: 0.85rem;
   }
 }
+
+

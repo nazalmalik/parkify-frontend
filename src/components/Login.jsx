@@ -58,50 +58,74 @@ const AuthPage = () => {
   };
 
   // -------------------- USER SUBMIT --------------------
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!isLogin && formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match!");
-      return;
-    }
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    toast.error("❌ Invalid email format. Example: username@gmail.com");
+    return;
+  }
 
-    try {
-      if (isLogin) {
-        const res = await axios.post("https://parkify-backend-six.vercel.app/api/auth/login", {
-          email: formData.email,
-          password: formData.password,
-        });
+  // Password strength validation
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+  if (!passwordRegex.test(formData.password)) {
+    toast.error("❌ Password must be 8+ characters, include 1 capital letter & 1 special character.");
+    return;
+  }
 
-        const { token, user } = res.data;
+  // Password match check (only for signup)
+  if (!isLogin && formData.password !== formData.confirmPassword) {
+    toast.error("❌ Passwords do not match.");
+    return;
+  }
 
-        if (token && user) {
-          localStorage.setItem("token", token);
-          localStorage.setItem("User", JSON.stringify(user));
-          toast.success("Login successful!");
-          setTimeout(() => navigate("/"), 1000);
-        } else {
-          toast.error("Login failed. Invalid response.");
-        }
-      } else {
-        await axios.post("https://parkify-backend-six.vercel.app/api/auth/register", formData);
-        toast.success("Registered successfully!");
-        setIsLogin(true);
-      }
+  // Terms & Conditions checkbox validation (only for signup)
+  const termsCheckbox = document.getElementById("terms-checkbox");
+  if (!isLogin && !termsCheckbox.checked) {
+    toast.error("❌ You must agree to the Terms & Conditions to register.");
+    return;
+  }
 
-      setFormData({
-        name: "",
-        phoneNumber: "",
-        vehicleNumber: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+  try {
+    if (isLogin) {
+      const res = await axios.post("https://parkify-backend-six.vercel.app/api/auth/login", {
+        email: formData.email,
+        password: formData.password,
       });
-    } catch (error) {
-      console.error("Auth error:", error.response?.data || error.message);
-      toast.error("Something went wrong. Please try again.");
+
+      const { token, user } = res.data;
+
+      if (token && user) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("User", JSON.stringify(user));
+        toast.success("✅ Login successful!");
+        setTimeout(() => navigate("/"), 1000);
+      } else {
+        toast.error("❌ Login failed. Try again.");
+      }
+    } else {
+      await axios.post("https://parkify-backend-six.vercel.app/api/auth/register", formData);
+      toast.success("✅ Registered successfully!");
+      setIsLogin(true);
     }
-  };
+
+    // Reset form
+    setFormData({
+      name: "",
+      phoneNumber: "",
+      vehicleNumber: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  } catch (error) {
+    console.error("Auth error:", error.response?.data || error.message);
+    toast.error("❌ Something went wrong. Please try again.");
+  }
+};
+
 
 // -------------------- ADMIN SUBMIT --------------------
 const handleAdminLogin = async (e) => {

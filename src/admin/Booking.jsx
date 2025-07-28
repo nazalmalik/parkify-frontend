@@ -119,6 +119,7 @@ const Bookings = () => {
           <p>No paid bookings found.</p>
         ) : (
           <>
+           <div className="bookings-table-wrapper">
             <table className="bookings-table">
               <thead>
                 <tr>
@@ -163,6 +164,7 @@ const Bookings = () => {
                 })}
               </tbody>
             </table>
+            </div>
 
             <div className="pagination-container">
               {Array.from({ length: totalPages }, (_, i) => (

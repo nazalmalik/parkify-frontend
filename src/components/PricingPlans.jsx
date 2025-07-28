@@ -14,7 +14,7 @@ const parkingRates = [
   },
   {
     name: "Car",
-    price: "Rs. 200/hour",
+    price: "Rs. 200/hr",
     icon: <FaCarSide size={50} color="#ffc107" />,
     features: ["Single Spot", "24/7 Access", "Basic Security"],
   },
