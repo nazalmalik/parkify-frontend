@@ -54,7 +54,7 @@ const Profile = () => {
               <p><strong>Date:</strong> {new Date(booking.bookingDate).toDateString()}</p>
               <p><strong>Time:</strong> {booking.startTime} - {booking.endTime}</p>
               <p><strong>Vehicle:</strong> {booking.vehicleType} ({booking.licensePlate})</p>
-              <p><strong>Total:</strong> ${booking.totalPrice}</p>
+              <p><strong>Total:</strong> Rs.{booking.totalPrice}</p>
               <span className="status-badge status-paid">Paid</span>
             </div>
           ))}
