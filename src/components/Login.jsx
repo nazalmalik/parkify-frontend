@@ -188,7 +188,7 @@ const AuthPage = () => {
                   <input
                     type="tel"
                     name="phoneNumber"
-                    placeholder="03XXXXXXXXX"
+                    placeholder="Phone No"
                     required
                     value={formData.phoneNumber}
                     onChange={handleChange}
@@ -201,7 +201,7 @@ const AuthPage = () => {
                   <input
                     type="text"
                     name="vehicleNumber"
-                    placeholder="ABC 312"
+                    placeholder="Vehicle No"
                     required
                     value={formData.vehicleNumber}
                     onChange={handleChange}
