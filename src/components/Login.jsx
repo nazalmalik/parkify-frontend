@@ -189,7 +189,7 @@ const AuthPage = () => {
     src="https://cdn-icons-png.flaticon.com/512/483/483947.png"
     alt="Phone"
     className="input-icon"
-    style={{ width: "16px", height: "16px" }}
+    style={{ width: "16px", height: "16px",color: #999; }}
   />
                   <input
                     type="tel"
