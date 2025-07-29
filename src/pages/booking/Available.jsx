@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import AvailableSpots from '../../components/AvailableSpots.jsx';
 import './Available.css';
 
-
 const AvailableBookingPage = () => {
   const [vehicleType, setVehicleType] = useState(null);
 
@@ -19,7 +18,7 @@ const AvailableBookingPage = () => {
 
   return (
     <>
-    
+      <Navigation />
       <div className="available-booking-container">
         <h1>Available Parking Spots</h1>
 
@@ -50,7 +49,7 @@ const AvailableBookingPage = () => {
 
         <AvailableSpots vehicleType={vehicleType} />
       </div>
-   
+      <Footer />
     </>
   );
 };
