@@ -186,10 +186,10 @@ const AuthPage = () => {
                 <div className="input-icon-wrapper">
 {/*                   <FaPhone className="input-icon" /> */}
                     <img
-    src="https://cdn-icons-png.flaticon.com/512/483/483947.png"
+    src="https://cdn-icons-png.flaticon.com/512/2948/2948005.png"
     alt="Phone"
     className="input-icon"
-    style={{ width: "16px", height: "16px", color: "#cccccc" }}
+    style={{ width: "16px", height: "16px", filter: "grayscale(100%) brightness(0.6)" }}
   />
                   <input
                     type="tel"
