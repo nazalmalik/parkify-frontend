@@ -155,7 +155,7 @@ const Bookings = () => {
                         <td>{booking.bookingDate?.slice(0, 10)}</td>
                         <td>{booking.startTime} - {booking.endTime}</td>
                         <td>Rs.{rate}</td>
-                        <td>Rs.{totalPrice}</td>
+                        <td>Rs.{booking.totalPrice}</td>
                         <td>{booking.isPaid ? 'Yes' : 'No'}</td>
                         <td>{booking.qrScanned ? '✅' : '❌'}</td>
                         <td>
