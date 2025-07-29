@@ -14,16 +14,16 @@ const parkingRates = [
   },
   {
     name: "Car",
-    price: "Rs. 200/hr",
+    price: "Rs.90/hr",
     icon: <FaCarSide size={50} color="#ffc107" />,
     features: ["Single Spot", "24/7 Access", "Basic Security"],
   },
-  {
-    name: "Loader",
-    price: "Rs. 500/hr",
-    icon: <FaTruckPickup size={50} color="#ffc107" />,
-    features: ["Spacious Spot", "High Security", "Priority Access"],
-  },
+  // {
+  //   name: "Loader",
+  //   price: "Rs. 500/hr",
+  //   icon: <FaTruckPickup size={50} color="#ffc107" />,
+  //   features: ["Spacious Spot", "High Security", "Priority Access"],
+  // },
 ];
 
 const subscriptions = [
